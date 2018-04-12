@@ -331,15 +331,15 @@
 
         <section data-markdown class="">
             <script type="text/template">
-                ## Page title
-                A paragraph with some text and a [link](https://stateofjs.com/2017/front-end/results/).
+             ## React c.d. 1
+             DOM stands for Document Object Model
+             For web developers, this text is an HTML code, and the DOM is simply called HTML DOM. Elements of HTML become nodes in the DOM.
 
+             document is an abstraction of the root node, while getElementById, parentNode and removeChild are methods from HTML DOM API.
 
-                - Item 1 <!-- .element: class="fragment" data-fragment-index="2" -->
-                - Item 2 <!-- .element: class="fragment" data-fragment-index="1" -->
+             The HTML DOM is always tree-structured - which is allowed by the structure of HTML document. This is cool because we can traverse trees fairly easily. Unfortunately, easily doesn’t mean quickly here.
 
-                Note:
-                This will only display in the notes window.
+             Virtual DOM is about avoiding unnecessary changes to the DOM, which are expensive performance-wise, because changes to the DOM usually cause re-rendering of the page. Virtual DOM also allows to collect several changes to be applied at once, so not every single change causes a re-render, but instead re-rendering only happens once after a set of changes was applied to the DOM.
             </script>
         </section>
 
