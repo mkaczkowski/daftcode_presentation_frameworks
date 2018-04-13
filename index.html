@@ -124,8 +124,8 @@
 
 
         <!--FIGHT-->
-        <section data-background-image="/img/506.jpg" data-transition="zoom">
-        </section>
+        <!--<section data-background-image="/img/506.jpg" data-transition="zoom">-->
+        <!--</section>-->
 
 
         <!--<section data-markdown class="three" data-transition="zoom">
@@ -344,7 +344,7 @@
             </script>
         </section>
 
-        <section>
+        <!--<section>
             <div data-markdown>
                 <script type="text/template">
                     ### React Components
@@ -368,10 +368,10 @@
                     </div>
                 </div>
             </div>
-        </section>
+        </section>-->
 
 
-        <section>
+      <!--  <section>
             <section>
                 <div data-markdown>
                     <script type="text/template">
@@ -412,10 +412,10 @@
                     ![Img](/img/jsx3.png)
                 </script>
             </section>
-        </section>
+        </section>-->
 
 
-        <section>
+       <!-- <section>
             <div data-markdown>
                 <script type="text/template">
                     ### Component's Properties
@@ -442,9 +442,9 @@
                     </div>
                 </div>
             </div>
-        </section>
+        </section>-->
 
-        <section>
+        <!--<section>
             <section>
                 <div data-markdown>
                     <script type="text/template">
@@ -498,9 +498,9 @@
                     </div>
                 </div>
             </section>
-        </section>
+        </section>-->
 
-        <section>
+        <!--<section>
             <section data-markdown>
                 <script type="text/template">
                     ### Document Object Model (DOM)
@@ -540,10 +540,10 @@
 
 
             </script>
-        </section>
+        </section>-->
 
         <!--LIFECYCLE-->
-        <section>
+       <!-- <section>
             <section data-markdown>
                 <script type="text/template">
                     ### Component Lifecycle
@@ -604,15 +604,14 @@
                     ![Img](/img/lifecycle/compWillUnmount.png)
                 </script>
             </section>
-        </section>
+        </section>-->
 
         <!-- LIVECODING -->
-        <section data-background-image="/img/cat.gif">
-        </section>
+      <!--  <section data-background-image="/img/cat.gif">
+        </section>-->
 
         <!--END-->
-        <section
-                data-background-image="http://gifimage.net/wp-content/uploads/2017/06/thats-all-folks-gif-12.gif"></section>
+        <!--<section data-background-image="http://gifimage.net/wp-content/uploads/2017/06/thats-all-folks-gif-12.gif"></section>-->
 
         <!--LIVE CODING-->
     </div>
@@ -630,11 +629,13 @@
         progress: false,
         touch: false,
         slideNumber: false,
+        loop: true,
         // defaultTiming:-1,
         // parallaxBackgroundImage: "https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg",
         dependencies: [
             {src: "plugin/markdown/marked.js"},
             {src: "plugin/markdown/markdown.js"},
+            { src: 'plugin/zoom-js/zoom.js', async: true },
             {src: "plugin/notes/notes.js", async: true},
             {
                 src: "plugin/highlight/highlight.js", async: true, callback: function () {
