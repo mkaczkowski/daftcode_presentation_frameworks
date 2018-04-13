@@ -30,12 +30,17 @@
 <div class="reveal">
     <div class="slides">
 
+        <section data-background-image="http://gifimage.net/wp-content/uploads/2017/06/thats-all-folks-gif-12.gif">
+        </section>
+
         <section data-markdown class="three">
             <script type="text/template">
                 ### Co nam daje framework?
                 - **Speed**: By using frameworks we deal with pre-build functions so that it helps to speed up the development process.
                 - **Support**: A famous framework has huge community associated with it, that works as support team for you.
                 - **Cost**: Most of the best frameworks are free to use, so cost can be cut on both developer and client ends.
+
+
 
                 To build large apps with data changes over time
 
@@ -49,7 +54,9 @@
 
         <section data-markdown class="three">
             <script type="text/template">
-                ### Angular
+                ![Frameworks](https://angular.io/assets/images/logos/angular/angular.png) <!-- .element: class="logo" -->
+                ![Frameworks](https://upload.wikimedia.org/wikipedia/commons/f/f1/Vue.png) <!-- .element: class="logo" -->
+                ![Frameworks](https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/1280px-React-icon.svg.png) <!-- .element: class="logo" -->
 
                 Of the three major players Angular has been around the longest by a sizeable margin. This gave the team at Google a long time to optimize and evolve the platform but resulted in a bloated, disjointed codebase. To tackle this problem Angular just went through a total, non-backwards-compatible rewrite from legacy JavaScript into TypeScript. This smoothed a lot of the rough edges, built a well-documented and typed API, and seriously improved performance. However, Angular tries to be everything to everyone – it ships with it’s own HTTP/AJAX module, it’s own animations implementation, form validation, routing, and so on. Some people like this since most full-featured UIs need many of these features and they all integrate well with one another, but other developers prefer to use libraries they’re familiar with and find it difficult to work around the built-ins. These extra features also add some serious weight to the framework – Angular deliverables are typically larger than competitors which is a concern in bandwidth-constrained environments.
 
@@ -379,7 +386,6 @@
             State
 
             - mutable
-
 
             The state is similar to attributes in object-oriented programming : it's something local to a class (component), used to better describe it. We'll cover React state management and what should be kept in the local state in another article.
             State, on the other hand, is private and its main purpose is to manipulate it within the component. The state is available only to classes, and is used to handle some internal changes (like updating some text stored based on onChange event):

@@ -291,6 +291,12 @@ header > img{
 
 img{
     border:none !important;
+    background: transparent !important;
+    box-shadow: none !important;
+}
+
+.logo{
+    height:150px;
 }
 
 .author{
