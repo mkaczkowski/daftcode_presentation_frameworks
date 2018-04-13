@@ -37,6 +37,8 @@
                 - **Support**: A famous framework has huge community associated with it, that works as support team for you.
                 - **Cost**: Most of the best frameworks are free to use, so cost can be cut on both developer and client ends.
 
+                To build large apps with data changes over time
+
                 Frameworks are designed for doing more complex things, so, if you are using framework, there is already solved lot’s of problems for you. Frameworks have predefined design, already setup task runners and many libraries. You already can create fully functional project without other setups. As a result we can setup a new project very easily, development process is much faster, because we are already using high level API’s and every application which developed with that framework use same libraries, so for other developers will be much easier to join. But frameworks have more strict design.
 
                 Angular is a framework rather than a library because it provides strong opinions as to how your application should be structured and also has more functionality out of the box.
@@ -329,25 +331,153 @@
             </script>
         </section>
 
+        <section>
+            ### REACT COMPONENTS
+            - reusable
+            - composable
+            - self-contained
+            - unit testable
+
+            Note:  All logically separable parts of the code, like input field, a button, a form, a list etc. should be written in separate components.
+
+            ![Frameworks](/img/component.png)
+
+        </section>
+
+        <section>
+            JSX
+
+            - create JS objects using HTML syntax
+            JSX adds an XML-like syntax to JavaScript and makes creating ReactJS components easier. While not required, JSX adds enough benefits to be considered a standard part of React development.
+            JSX provides a shortcut for working with React.createElement() and describes how the UI should render a component.
+            JSX also improves development time
+            JSX also forces safer coding. Before rendering elements, JSX converts everything to strings to escape user inputs and XSS vulnerabilities.
+
+            ![Frameworks](/img/jsx.png)
+            ![Frameworks](/img/jsx2.png)
+            ![Frameworks](/img/jsx3.png)
+
+        </section>
+
+
+        <section>
+            PROPS
+
+            - immutable
+            - Uni directional data flow
+
+            props are the parameters passed to that function when it's called. Anything can be a prop: a string, boolean, number, some other React element, undefined...
+            The most important thing to keep in mind about the props is that they are read-only, meaning that they can't be changed in the component receiving them and shouldn't be mutated.
+            Props are like parameters - they are passed to a component from the caller of a component (the parent) : as if you called a function with certain parameters.
+
+            ![Frameworks](/img/props.png)
+
+
+        </section>
+
+        <section>
+            State
+
+            - mutable
+
+
+            The state is similar to attributes in object-oriented programming : it's something local to a class (component), used to better describe it. We'll cover React state management and what should be kept in the local state in another article.
+            State, on the other hand, is private and its main purpose is to manipulate it within the component. The state is available only to classes, and is used to handle some internal changes (like updating some text stored based on onChange event):
+
+            ![Frameworks](/img/state1.png)
+            ![Frameworks](/img/state2.png)
+
+            Note:
+            The state is initialized in the constructor, a special method called before initial component render. All the custom methods (like handleChange in the previous example) should be written using arrow function, so they're automatically bound to a component.
+
+            setState() also accepts a function. The function accepts the previous state and current props of the component which it uses to calculate and return the next state. See it below:
+            Note that setState() is a function, and we are passing another function to it(functional programming… functional setState) . At first glance, this might seem ugly, too many steps just to set-state. Why will you ever want to do this?
+
+            Think about what happens when setState() is called. React will first merge the object you passed to setState() into the current state. Then it will start that reconciliation thing. It will create a new React Element tree (an object representation of your UI), diff the new tree against the old tree, figure out what has changed based on the object you passed to setState() , then finally update the DOM.
+            Because of the amount of work involved, calling setState() might not immediately update your state.
+
+            Because this.props and this.state may be updated asynchronously, you should not rely on their values for calculating the next state.
+
+            A key difference between state and props is that props are read-only. You can't change the value of a property from within the component itself. Properties are externally passed into components as configuration values and read within the components themselves.
+
+        </section>
+
         <section data-markdown class="">
             <script type="text/template">
-             ## React c.d. 1
-             DOM stands for Document Object Model
-             For web developers, this text is an HTML code, and the DOM is simply called HTML DOM. Elements of HTML become nodes in the DOM.
+                ## React c.d. 1
+                DOM stands for Document Object Model
+                For web developers, this text is an HTML code, and the DOM is simply called HTML DOM. Elements of HTML become nodes in the DOM.
 
-             document is an abstraction of the root node, while getElementById, parentNode and removeChild are methods from HTML DOM API.
+                document is an abstraction of the root node, while getElementById, parentNode and removeChild are methods from HTML DOM API.
 
-             The HTML DOM is always tree-structured - which is allowed by the structure of HTML document. This is cool because we can traverse trees fairly easily. Unfortunately, easily doesn’t mean quickly here.
+                The HTML DOM is always tree-structured - which is allowed by the structure of HTML document. This is cool because we can traverse trees fairly easily. Unfortunately, easily doesn’t mean quickly here.
+                The Document object model is a representation of the structure of all the node in a html document. It provides a way for javascript to interact with all every single node in a html document (it's essentially an API for html and xml documents).
+                next, prev, parent, children,
 
-             Virtual DOM is about avoiding unnecessary changes to the DOM, which are expensive performance-wise, because changes to the DOM usually cause re-rendering of the page. Virtual DOM also allows to collect several changes to be applied at once, so not every single change causes a re-render, but instead re-rendering only happens once after a set of changes was applied to the DOM.
+                Virtual DOM is about avoiding unnecessary changes to the DOM, which are expensive performance-wise, because changes to the DOM usually cause re-rendering of the page. Virtual DOM also allows to collect several changes to be applied at once, so not every single change causes a re-render, but instead re-rendering only happens once after a set of changes was applied to the DOM.
+
+                Virtual DOM is already in memory, on the other hand real DOM has to be accessed from page and loaded to memory for any operation.
+
+                Wcześniej rerender whole app on every update - perf issue!
+                Operations on DOM are slow
+
+                ![Frameworks](/img/vdom.png)
             </script>
         </section>
 
-        <section>Slide 2</section>
+
+        <section>
+            ### Component Lifecycle
+            Methods handling the component lifecycle are inherited from Component (yes, that Component you're importing at the top of the file). The most detailed description of lifecycle methods can be found here.
+
+            ![Frameworks](/img/lifecycle.png)
+
+            interactive diagram [pl]:
+            http://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/
+            <!--https://pbs.twimg.com/media/DZ-97vzW4AAbcZj.jpg:large-->
+            <!--https://reactjs.org/docs/react-component.html-->
+
+            ![Img](/img/lifeycle/compDidUpdate.png)
+            ![Img](/img/lifeycle/componentDidMount.png)
+            ![Img](/img/lifeycle/compWillUnmount.png)
+            ![Img](/img/lifeycle/constructor.png)
+            ![Img](/img/lifeycle/getDerived.png)
+            ![Img](/img/lifeycle/getSnapshot.png)
+            ![Img](/img/lifeycle/render.png)
+            ![Img](/img/lifeycle/shouldCompUpdate.png)
+
+        </section>
 
         <section data-background-image="https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg">Slide 1</section>
 
+        <section>
+        #HOMEWORK
 
+        Należy stworzy komponent 'Counter', ktory w swoim dzialniu bedzie zblizony do minutnika.
+        Powinien wyswietla w czasie rzeczywistym, co 1 sekunde, akutalny stan licznika.
+
+         Komponent przyjmuje wartosci:
+            wymagane:
+                from: number [sec]
+                to: number [sec]
+            opcjonalne:
+                onSuccess: function
+
+         Rozpoczecie odliczania nastepuje automatycznie.
+         Odliczanie od liczby podanej w [from], az  do osiagniecia liczby [to].
+         W momencie osiagniecia wartosci [to] nalez wywolac funkcje/callback podana w [onSuccess] o ile ta istnieje.
+
+         Dodatkowo  po kliknieciu w komponent nastapi zresetowanie licznika i ponowny start zaczynajac od wartosci [from].
+
+         Dla Asów programowania:
+         * PropTypes
+         * format minutnika: mm:ss -> 00:59
+         * jezeli timer nie doszedl do konca to klikniecie w komponent wstrzymuje timer, a kolejne klikniecie wznawia odliczanie.
+         * dodanie dowolnych styli inline
+        </section>
+
+        <!--LIVE CODING-->
+        <!--FRONTEND DEV ROADMAP-->
     </div>
 </div>
 
