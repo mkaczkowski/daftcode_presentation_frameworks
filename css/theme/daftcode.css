@@ -304,15 +304,24 @@ img{
     display: flex;
 }
 
+.col_code{
+    flex: 3.5;
+    align-items: center;
+    display: flex;
+}
+
 .col_text{
     flex: 2;
     align-items: center;
     display: flex;
 }
 
-.logo{
-    height:150px;
+
+.col_text img{
+    height:120px;
+    margin: 0 auto;
 }
+
 
 .author{
     font-size: .5em !important;
