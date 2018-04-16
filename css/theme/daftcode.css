@@ -336,3 +336,6 @@ section img{
     margin: 0 !important;
 }
 
+.dom img{
+    width:55%;
+}
