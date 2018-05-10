@@ -36,29 +36,371 @@
         </textarea>
         </section>
 
+        <section data-markdown >
+        <textarea data-template>
+            ![Img](http://www.phpmind.com/blog/wp-content/uploads/2017/05/synchronous-asynchronous-javascript.png)
+        </textarea>
+        </section>
+
+        <section data-markdown >
+        <textarea data-template>
+            # opis jak wykonywane sa operacje sync/async w JS
+
+            # link do YT video !
+        </textarea>
+        </section>
+
+        <section data-markdown >
+            <textarea data-template>
+                # Async technics
+                * callbacks
+                * Promise
+                * async / await
+            </textarea>
+        </section>
+
+        <section data-markdown >
+            <textarea data-template>
+                # Callback k (e.g. 'call you back later')
+
+                ```downloadPhoto('http://coolcats.com/cat.gif', handlePhoto)
+
+                    function handlePhoto (error, photo) {
+                      if (error) console.error('Download error!', error)
+                      else console.log('Download finished', photo)
+                    }
+
+                    console.log('Download started')
+                ```
+
+                Note:
+                Callbacks are just the name of a convention for using JavaScript functions. There isn't a special thing called a
+                'callback' in the JavaScript language, it's just a convention. Instead of immediately returning some result like most
+                functions, functions that use callbacks take some time to produce a result. The word 'asynchronous', aka 'async' just means
+                'takes some time' or 'happens in the future, not right now'.
+
+                Note that the handlePhoto is not invoked yet, it is just created and passed as a callback into downloadPhoto.
+                But it won't run until downloadPhoto finishes doing its task, which could take a long time depending on how fast the Internet connection is.
+            </textarea>
+        </section>
+
+        <section data-markdown >
+            <textarea data-template>
+                # Callback Hell
+
+
+                ```const verifyUser = function(username, password, callback){
+   dataBase.verifyUser(username, password, (error, userInfo) => {
+       if (error) {
+           callback(error)
+       }else{
+           dataBase.getRoles(username, (error, roles) => {
+               if (error){
+                   callback(error)
+               }else {
+                   dataBase.logAccess(username, (error) => {
+                       if (error){
+                           callback(error);
+                       }else{
+                           callback(null, userInfo, roles);
+                       }
+                   })
+               }
+           })
+       }
+   })
+};
+                ```
+
+
+
+                Callback hell is caused by poor coding practices. Luckily writing better code isn't that hard!
+
+                "Write small modules that each do one thing, and assemble them into other modules that do a bigger thing. You can't get into callback hell if you don't go there."
+                Isaac Schlueter
+
+                Note:
+                Each function gets an argument which is another function that is called with a parameter that is the response of the previous action.
+            </textarea>
+        </section>
+
+        <section data-markdown >
+            <textarea data-template>
+                # Promise
+
+                https://caniuse.com/#feat=promises
+
+                ```
+                const promise = new Promise((resolve, reject) => {
+                //asynchronous code goes here
+                 const request = new XMLHttpRequest();
+                  request.open('GET', 'https://api.spacex.com/launch/1');
+                  request.onload = () => {
+                    if (request.status === 200) {
+                      resolve(request.response); // we got data here, so resolve the Promise
+                    } else {
+                      reject(new Error(request.statusText)); // status is not 200 OK, so reject
+                    }
+                }
+});
+
+
+
+                Note:
+                Many of us have already used promises in the form of libraries such as Q, when.js, RSVP.js, etc.
+                Even jQuery has something called a Deferred object, which is similar to a promise. But now we have native support for promises in JavaScript, which is really exciting.
+
+                A Promise object represents a value that may not be available yet, but will be resolved at some point in the future.
+                It allows you to write asynchronous code in a more synchronous fashion. For example, if you use the promise API to make an asynchronous
+                call to a remote web service, you will create a Promise object which represents the data that will be returned by the web service in future.
+                The caveat is that the actual data isn’t available yet. It will become available when the request completes and a response comes back from the web service.
+                In the meantime, the Promise object acts like a proxy to the actual data.
+                Furthermore, you can attach callbacks to the Promise object, which will be called once the actual data is available.
+
+                In case of an error, reject() is called with an Error object. This indicates that the promise is rejected.
+            </textarea>
+        </section>
+
+        <section data-markdown >
+            <textarea data-template>
+                # Chaining Promises
+
+                ````promise.then((result) => {
+  //we have our result here
+  return getPromise(result); //return a promise here again
+}).then((result) => {
+  //handle the final result
+});
+                ````
+
+                Note:
+                The tricky part is that, when you return a simple value inside then(), the next then() is called with that return value.
+                But if you return a promise inside then(), the next then() waits on it and gets called when that promise is settled.
+            </textarea>
+        </section>
+
+        <section data-markdown >
+            <textarea data-template>
+                # Promise - Handling error
+
+                promise.then((result) => {
+  console.log('Got data!', result);
+}).catch((error) => {
+  console.log('Error occurred!', error);
+});
+
+                This is equivalent to:
+
+promise.then((result) => {
+  console.log('Got data!', result);
+}).then(undefined, (error) => {A
+  console.log('Error occurred!', erroAr);
+});
+
+            </textarea>
+        </section>
+
+        <section data-markdown >
+            <textarea data-template>
+                # Promise utils
+
+                ```
+                Promise.resolve('this always resolves').then(function(data) {
+  alert(data); //this is called
+});
+
+Promise.reject('this always rejects').then(function(data) {
+  alert(data); // this is never called
+}).catch(function(err) {
+  alert(err); //this is called
+});
+</textarea>
+        </section>
+
+                   <section data-markdown >
+            <textarea data-template>
+                # Promise.all
+
+        const p1 = Promise.resolve('foo');
+        const p2 = new Promise((res, rej) => { setTimeout(res, 100, 'bar') });
+        const p3 = "baz"
+
+        Promise.all(p1, p2, p3)
+          .then(([a1, a2, a3]) => console.log(a1, a2, a3));
+        // "foo" "bar" "baz"
+
+        --error--
+        const p4 = Promise.reject('qux');
+        all(p1, p2, p3, p4)
+          .then(([a1, a2, a3]) => console.log(a1, a2, a3))
+          .catch(e => console.log(e));
+        // "qux"
+
+
+                ```
+            </textarea>
+        </section>
+                   <section data-markdown >
+            <textarea data-template>
+                # Promise.race
+
+   const p1 = new Promise((res, rej) => { setTimeout(res, 200, 'foo') });
+const p2 = new Promise((res, rej) => { setTimeout(res, 100, 'bar') });
+race(p1, p2).then(a => console.log(a)); // "bar"
+
+const p3 = Promise.reject('qux');
+race(p1, p2, p3)
+  .then(a => console.log(a))
+  .catch(e => console.log(e)); // "baz"
+
+
+                ```
+            </textarea>
+        </section>
+
+        <section data-markdown >
+            <textarea data-template>
+
+
+                promise.then((data) => {
+                  console.log('Got data:'+data);
+                }, (err) => {
+                  console.log('Promise rejected:'+err.message);
+                });
+                ```
+
+                ```
+                const verifyUser = function(username, password) {
+   database.verifyUser(username, password)
+       .then(userInfo => dataBase.getRoles(userInfo))
+       .then(rolesInfo => dataBase.logAccess(rolesInfo))
+       .then(finalResult => {
+           //do whatever the 'callback' would do
+       })
+       .catch((err) => {
+           //do whatever the error handler needs
+       });
+};
+                ```
+            </textarea>
+        </section>
+
+        <section data-markdown >
+            <textarea data-template>
+                # Promise race / others?
+            </textarea>
+        </section>
+
+        <section data-markdown >
+            <textarea data-template>
+                # Async/Await
+
+                ```const verifyUser = async function(username, password){
+   try {
+       const userInfo = await dataBase.verifyUser(username, password);
+       const rolesInfo = await dataBase.getRoles(userInfo);
+       const logStatus = await dataBase.logAccess(userInfo);
+       return userInfo;
+   }catch (e){
+       //handle errors as needed
+   }
+};
+                ```
+
+
+                ?
+
+                 ES7 feature - babel
+
+            The resulting code is much cleaner.
+            Error handling is much simpler and it relies on try/catch just like in any other synchronous code.
+            Debugging is much simpler. Setting a breakpoint inside a .then block will not move to the next .then
+            with debugger you can step through await calls as if they were synchronous calls.
+            </textarea>
+        </section>
+
+        <section data-markdown >
+            <textarea data-template>
+                # Async/Await - do czego sie kompiluje?
+            </textarea>
+        </section>
+
+        <section data-markdown >
+            <textarea data-template>
+                # Async/Await - errors catch
+            </textarea>
+        </section>
+
+        <section data-markdown >
+            <textarea data-template>
+                # Observables?
+            </textarea>
+        </section>
+
+        <section data-markdown >
+            <textarea data-template>
+                # Generators?
+            </textarea>
+        </section>
+
+        <section data-markdown >
+            <textarea data-template>
+                # Fetch
+            </textarea>
+        </section>
+
+        <section data-markdown >
+            <textarea data-template>
+                # Fetch compatibility / polyfills?
+            </textarea>
+        </section>
+
+        <section data-markdown >
+            <textarea data-template>
+                # Fetch api
+            </textarea>
+        </section>
+
+        <section data-markdown >
+            <textarea data-template>
+                # Fetch alternatives: axios
+            </textarea>
+        </section>
+
+        <section data-markdown >
+            <textarea data-template>
+                # Fetch alternatives: other?
+            </textarea>
+        </section>
+
+        <section data-markdown >
+            <textarea data-template>
+                # Live coding
+            </textarea>
+        </section>
+
+        <section data-markdown >
+            <textarea data-template>
+                # Zadanie na zajeciach?
+            </textarea>
+        </section>
+
+
+
         <!--OLD WAY-->
         <section data-markdown class="three">
             <script type="text/template">
-                #### JQuery way
-                ![Img](/img/carbon1.png)
-            </script>
-        </section>
+                Synchronous way: It waits for each operation to complete, after that only it executes the next operation.
+                For your query: The console.log() command will not be executed until & unless the query has finished executing to get all the result from Database.
 
-        <!--MODERN WAY-->
-        <section data-markdown class="three">
-            <script type="text/template">
-                #### Modern approach
-                ![Img](/img/carbon2.png)
-            </script>
-        </section>
+                Asynchronous way: It never waits for each operation to complete, rather it executes all operations in the first GO only.
+                The result of each operation will be handled once the result is available. For your query: The console.log()
+                command will be executed soon after the Database.Query() method. While the Database query runs in the background and loads the result
+                once it is finished retrieving the data.
 
-        <!--PACKAGE.JSON-->
-        <section data-markdown class="three">
-            <script type="text/template">
-                #### package.json
-                ![Img](/img/code1.png)
-                ![Img](/img/code02.png)
-                ![Frameworks2](/img/code03.png)
+                Use cases
+                If your operations are not doing very heavy lifting like querying huge data from DB then go ahead with Synchronous way otherwise Asynchronous way.
+                In Asynchronous way you can show some Progress indicator to the user while in background you can continue with your heavy weight works. This is an ideal scenario for GUI apps.
             </script>
         </section>
 
@@ -67,7 +409,7 @@
         </section>
 
         <!--FRAMEWORKS-->
-        <section data-markdown class="three">
+        <section data-markdown >
             <script type="text/template">
                 ### When we really need it?
                 To build large apps with data changes over time
@@ -95,92 +437,6 @@
                 SUPPORT -  famous framework has huge community associated with it, that works as support team for you.
                 COST - Most of the best frameworks are free to use, so cost can be cut on both developer and client ends.
             </script>
-        </section>
-
-        <!--POPULARITY-->
-        <section data-markdown class="pop">
-            <script type="text/template">
-                #### Popularity (2017)
-                by programmers via [stateofjs.com](https://stateofjs.com/2017/front-end/results/)
-                ![Img](/img/frameworks_chart.png)
-            </script>
-        </section>
-
-        <!--FIGHT-->
-        <section data-background-image="/img/506.jpg" data-transition="zoom">
-        </section>
-
-        <!--⭐-->
-        <section data-markdown class="stars">
-            <script type="text/template">
-                #### Number of ⭐ on GitHub
-                ![Img](/img/frameworks_stars.png)
-            </script>
-        </section>
-
-        <!--DOWNLOADS-->
-        <section data-markdown class="stars">
-            <script type="text/template">
-                #### NPM downloads
-                ![Img](/img/downloads.png)
-            </script>
-        </section>
-
-        <!--<section data-markdown class="three" data-transition="zoom">-->
-            <!--<script type="text/template">-->
-                <!--![Img](/img/506.jpg)-->
-            <!--</script>-->
-        <!--</section>-->
-
-        <!--ANGULAR-->
-        <section>
-            <div class="container">
-                <div class="col_code">
-                    <div data-markdown>
-                        ![Img](/img/angular.png)
-
-                        Note:
-                        Of the three major players Angular has been around the longest by a sizeable margin. This gave
-                        the team at Google a long time to optimize and evolve the platform but resulted in a bloated,
-                        disjointed codebase. To tackle this problem Angular just went through a total,
-                        non-backwards-compatible rewrite from legacy JavaScript into TypeScript. This smoothed a lot of
-                        the rough edges, built a well-documented and typed API, and seriously improved performance.
-                        However, Angular tries to be everything to everyone – it ships with it’s own HTTP/AJAX module,
-                        it’s own animations implementation, form validation, routing, and so on. Some people like this
-                        since most full-featured UIs need many of these features and they all integrate well with one
-                        another, but other developers prefer to use libraries they’re familiar with and find it
-                        difficult to work around the built-ins. These extra features also add some serious weight to the
-                        framework – Angular deliverables are typically larger than competitors which is a concern in
-                        bandwidth-constrained environments.
-                        The Angular templates are enhanced HTML with special Angular language (Things like ngIf or
-                        ngFor). While React requires knowledge of JavaScript, Angular forces you to learn
-                        Angular-specific syntax.
-                        Angular2 has change detection that detects changes to the model and only updates the parts of
-                        the DOM that need to be changed according to the model changes.
-                        While you can write Angular is ES5, most people use Typescript. Decorators are used heavily to
-                        add metadata to the code such as when declaring a component controller. This defines where to
-                        look for the view and style code and manages data and event logic.
-                        Framework: routing, animation, form validation, etc
-
-                        YOU MIGHT LIKE… | YOU MIGHT HATE…
-                        Type safety (TypeScript) | Heavy platform
-                        Extensive feature set – Validation, AJAX, Animations, etc. | Performance
-                        Code separation | Some awkward, unintuitive APIs
-                    </div>
-                </div>
-                <div class="col_text">
-                    <div data-markdown>
-                        ![Img](/img/angular-2.png)
-                        - 2009/2016 Google
-                        - TypeScript (OOP)
-                        - MVC
-                        - Framework
-                        - angular-cli
-                        - NativeScript
-                        - 143kb
-                    </div>
-                </div>
-            </div>
         </section>
 
         <!--REACT-->
@@ -235,53 +491,6 @@
             </div>
         </section>
 
-        <!--VUE-->
-        <section>
-            <div class="container">
-                <div class="col_code">
-                    <div data-markdown>
-                        ![Img](/img/vue.png)
-
-                        Note:
-                        Vue is a relative newcomer. Those coming from Angular and React will see a lot that feels
-                        familiar – Vue shares the some of the same directive-based structures as Angular, while code
-                        organization is similar to React with intermixed view templates, logic, and styles. It also
-                        takes the approach of being a slim, targeted framework so unlike Angular there aren’t many extra
-                        modules, but it does keep a lot of the helpful elements like filter/pipe chains, one-time
-                        binding, and automatic change detection. The net result is a nicely-rounded framework that’ll do
-                        pretty much everything you need it to while being *crazy* fast. Overall, the impression I get of
-                        Vue is of an updated and streamlined Angular 1.x which is definitely not a bad thing.
-                        Vue is primarily developed by a single individual but has some corporate sponsors to pay the
-                        bills
-                        Vue features “single-file components”. This seems like a trade-off with regard to the separation
-                        of concerns — templates, scripts and styles are in one file but in three different, ordered
-                        sections.
-                        “Intuitive, Fast and Composable MVVM for building interactive interfaces.”
-                        made by ex-Google-employee Evan You with sponsors
-                        - one-way and two-way data binding
-                        GitLAb, GitHub
-                        YOU MIGHT LIKE… YOU MIGHT HATE…
-                        Half-intermixed View, Style, and Logic code | Half-intermixed View, Style, and Logic code
-                        Lightweight | Unintuitive attribute binding
-                        Framework support for filters, computed properties, transitions, etc. | IDE support not great
-                    </div>
-                </div>
-                <div class="col_text">
-                    <div data-markdown>
-                        ![Img](/img/Vue-2.png)
-                        - 2014 Evan You
-                        - Babel / Buble
-                        - Virtual DOM
-                        - View library
-                        - relatively simple
-                        - vue-cli
-                        - Weex by Alibaba
-                        - 23kb
-                    </div>
-                </div>
-            </div>
-        </section>
-
         <section data-markdown class="sumup">
             <script type="text/template">
                 ####  And the winner is ...
@@ -327,162 +536,6 @@
         </section>
 
         <section>
-            <div data-markdown>
-                <script type="text/template">
-                    ### React Components
-
-                    Note:
-                    All logically separable parts of the code, like input field, a button, a form, a list etc. should be written in separate components.
-                </script>
-            </div>
-            <div class="container">
-                <div class="col_img">
-                    <div data-markdown>
-                        ![Img](/img/component.png)
-                    </div>
-                </div>
-                <div class="col_text">
-                    <div data-markdown>
-                        - reusable
-                        - composable
-                        - self-contained
-                        - unit testable
-                    </div>
-                </div>
-            </div>
-        </section>
-
-
-        <section>
-            <section>
-                <div data-markdown>
-                    <script type="text/template">
-                        ### JavaScript XML (JSX)
-
-                        Note:
-                        JSX adds an XML-like syntax to JavaScript and makes creating ReactJS components easier.
-                        While not required, JSX adds enough benefits to be considered a standard part of React development.
-                        JSX provides a shortcut for working with React.createElement() and describes how the UI should render a component.
-                        JSX also improves development time
-                        JSX also forces safer coding. Before rendering elements, JSX converts everything to strings to escape user inputs and XSS vulnerabilities.
-                    </script>
-                </div>
-                <div class="container">
-                    <div class="col_img">
-                        <div data-markdown>
-                            ![Img](/img/jsx.png)
-                        </div>
-                    </div>
-                    <div class="col_text">
-                        <div data-markdown>
-                            - create JS objects using HTML syntax
-                            - improves development time
-                            - forces safer coding
-                        </div>
-                    </div>
-                </div>
-            </section>
-            <section data-markdown>
-                <script type="text/template">
-                    ### Component with JSX
-                    ![Img](/img/jsx2.png)
-                </script>
-            </section>
-            <section data-markdown>
-                <script type="text/template">
-                    ### Conditional JSX
-                    ![Img](/img/jsx3.png)
-                </script>
-            </section>
-        </section>
-
-
-        <section>
-            <div data-markdown>
-                <script type="text/template">
-                    ### Component's Properties
-
-                    Note:
-                    props are the parameters passed to that function when it's called.
-                    Anything can be a prop: a string,boolean, number, some other React element, undefined...
-                    The most important thing to keep in mind about the props is that they are read-only, meaning that they can't
-                    be changed in the component receiving them and shouldn't be mutated.
-                    Props are like parameters - they are passed to a component from the caller of a component (the parent) : as
-                    if you called a function with certain parameters.
-                </script>
-            </div>
-            <div class="container">
-                <div class="col_img">
-                    <div data-markdown>
-                        ![Img](/img/props.png)
-                    </div>
-                </div>
-                <div class="col_text">
-                    <div data-markdown>
-                        - immutable
-                        - Uni directional data flow
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section>
-            <section>
-                <div data-markdown>
-                    <script type="text/template">
-                        ### Component's State
-
-                        Note:
-                        The state is initialized in the constructor before initial component render
-                    </script>
-                </div>
-                <div class="container">
-                    <div class="col_img">
-                        <div data-markdown>
-                            ![Img](/img/state1.png)
-                        </div>
-                    </div>
-                    <div class="col_text">
-                        <div data-markdown>
-                            * only for classes
-                            * local
-                            * mutable
-                        </div>
-                    </div>
-                </div>
-            </section>
-            <section>
-                <div data-markdown>
-                    <script type="text/template">
-                        ### Component's State p.2
-
-                        Note:
-                        Think about what happens when setState() is called.
-                        React will first merge the object you passed to setState() into the current state.
-                        Then it will start that reconciliation thing.
-                        It will create a new React Element tree (an object representation of your UI), diff the new tree against the old tree,
-                        figure out what has changed based on the object you passed to setState(), then finally update the DOM.
-                        Because of the amount of work involved, calling setState() might not immediately update your state.
-
-                    </script>
-                </div>
-                <div class="container">
-                    <div class="col_img">
-                        <div data-markdown>
-                            ![Img](/img/state2.png)
-                        </div>
-                    </div>
-                    <div class="col_text">
-                        <div data-markdown>
-                            * used to handle internal changes
-                            * asynchronous
-                        </div>
-                    </div>
-                </div>
-            </section>
-        </section>
-
-        <section>
             <section data-markdown class="dom">
                 <script type="text/template">
                     ### Document Object Model (DOM)
@@ -495,96 +548,6 @@
 
                     Note:
                     it's essentially an API for html and xml documents
-                </script>
-            </section>
-
-            <section data-markdown>
-                <script type="text/template">
-                    ### Virtual DOM
-
-                    * allows to collect several changes to be applied at once.
-                    * re-rendering only happens once after a set of changes was applied to the DOM.
-                    * is located in memory
-                    * avoiding unnecessary changes to the DOM.
-
-                    Note:
-                    For web developers, this text is an HTML code, and the DOM is simply called HTML DOM. Elements of HTML become nodes in the DOM.
-
-                </script>
-            </section>
-            <section data-markdown>
-                <script type="text/template">
-                    ### Virtual DOM vs HTML DOM
-
-                    ![Img](/img/vdom.png)
-                </script>
-            </section>
-            <script type="text/template">
-
-
-            </script>
-        </section>
-
-        <!--LIFECYCLE-->
-        <section>
-            <section data-markdown>
-                <script type="text/template">
-                    ### Component Lifecycle
-
-                    ![Img](/img/lifecycle/lifecycle.jpeg)
-
-                    Interactive diagram [here](http://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/)
-
-                    Note:
-                    Methods handling the component lifecycle are inherited from React.Component
-                </script>
-            </section>
-            <section data-markdown>
-                <script type="text/template">
-                    ### constructor
-                    ![Img](/img/lifecycle/constructor.png)
-                </script>
-            </section>
-            <section data-markdown>
-                <script type="text/template">
-                    ### getDerivedStateFromProps
-                    ![Img](/img/lifecycle/getDerived.png)
-                </script>
-            </section>
-            <section data-markdown>
-                <script type="text/template">
-                    ### render
-                    ![Img](/img/lifecycle/render.png)
-                </script>
-            </section>
-            <section data-markdown>
-                <script type="text/template">
-                    ### componentDidMount
-                    ![Img](/img/lifecycle/componentDidMount.png)
-                </script>
-            </section>
-            <section data-markdown>
-                <script type="text/template">
-                    ### shouldComponentUpdate
-                    ![Img](/img/lifecycle/shouldCompUpdate.png)
-                </script>
-            </section>
-            <section data-markdown>
-                <script type="text/template">
-                    ### getSnapshotBeforeUpdate
-                    ![Img](/img/lifecycle/getSnapshot.png)
-                </script>
-            </section>
-            <section data-markdown>
-                <script type="text/template">
-                    ### componentDidUpdate
-                    ![Img](/img/lifecycle/compDidUpdate.png)
-                </script>
-            </section>
-            <section data-markdown>
-                <script type="text/template">
-                    ### componentWillUnmount
-                    ![Img](/img/lifecycle/compWillUnmount.png)
                 </script>
             </section>
         </section>
@@ -612,6 +575,7 @@
         touch: false,
         slideNumber: false,
         loop: true,
+        mouseWheel: true,
         // defaultTiming:-1,
         // parallaxBackgroundImage: "https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg",
         dependencies: [
