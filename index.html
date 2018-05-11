@@ -30,15 +30,29 @@
         <section data-markdown class="intro">
         <textarea data-template>
         ![Img](/img/baner.png)
-         - JS Frameworks overview  <!-- .element: class="h4" -->
-         - Let's try React! <!-- .element: class="h5" -->
+         - Asynchronous JS <!-- .element: class="h4" -->
+         - + Fetch API <!-- .element: class="h5" -->
          - Mariusz Kaczkowski <!-- .element: class="author" -->
         </textarea>
         </section>
 
+
         <section data-markdown >
         <textarea data-template>
             ![Img](http://www.phpmind.com/blog/wp-content/uploads/2017/05/synchronous-asynchronous-javascript.png)
+
+            Note:
+            Synchronous way: It waits for each operation to complete, after that only it executes the next operation.
+            For your query: The console.log() command will not be executed until & unless the query has finished executing to get all the result from Database.
+
+            Asynchronous way: It never waits for each operation to complete, rather it executes all operations in the first GO only.
+            The result of each operation will be handled once the result is available. For your query: The console.log()
+            command will be executed soon after the Database.Query() method. While the Database query runs in the background and loads the result
+            once it is finished retrieving the data.
+
+            Use cases
+            If your operations are not doing very heavy lifting like querying huge data from DB then go ahead with Synchronous way otherwise Asynchronous way.
+            In Asynchronous way you can show some Progress indicator to the user while in background you can continue with your heavy weight works. This is an ideal scenario for GUI apps.
         </textarea>
         </section>
 
@@ -46,32 +60,37 @@
         <textarea data-template>
             # opis jak wykonywane sa operacje sync/async w JS
 
+            img!: pobrane/event_loop.png
+
             # link do YT video !
+            Philip Roberts: What the heck is the event loop anyway? | JSConf EU 2014
+            https://www.youtube.com/watch?v=8aGhZQkoFbQ
         </textarea>
         </section>
 
         <section data-markdown >
             <textarea data-template>
-                # Async technics
-                * callbacks
-                * Promise
-                * async / await
+                # Asynchronous techniques
+                * Callbacks
+                * Promises
+                * Async / Await
             </textarea>
         </section>
 
         <section data-markdown >
             <textarea data-template>
-                # Callback k (e.g. 'call you back later')
+                # Callback ('call you back later')
 
-                ```downloadPhoto('http://coolcats.com/cat.gif', handlePhoto)
-
-                    function handlePhoto (error, photo) {
-                      if (error) console.error('Download error!', error)
-                      else console.log('Download finished', photo)
-                    }
-
-                    console.log('Download started')
                 ```
+function handlePhoto (error, photo) {
+    if (error) console.error('Download error!', error)
+    else console.log('Download finished', photo)
+}
+
+downloadPhoto('http://coolcats.com/cat.gif', handlePhoto)
+                ```
+
+                !callback.png
 
                 Note:
                 Callbacks are just the name of a convention for using JavaScript functions. There isn't a special thing called a
@@ -88,6 +107,7 @@
             <textarea data-template>
                 # Callback Hell
 
+                !img callback_hell.png
 
                 ```const verifyUser = function(username, password, callback){
    dataBase.verifyUser(username, password, (error, userInfo) => {
@@ -111,9 +131,6 @@
    })
 };
                 ```
-
-
-
                 Callback hell is caused by poor coding practices. Luckily writing better code isn't that hard!
 
                 "Write small modules that each do one thing, and assemble them into other modules that do a bigger thing. You can't get into callback hell if you don't go there."
@@ -142,9 +159,7 @@
                       reject(new Error(request.statusText)); // status is not 200 OK, so reject
                     }
                 }
-});
-
-
+                });
 
                 Note:
                 Many of us have already used promises in the form of libraries such as Q, when.js, RSVP.js, etc.
@@ -161,17 +176,39 @@
             </textarea>
         </section>
 
+
+        <section data-markdown >
+            <textarea data-template>
+                # Promise - Handling error
+
+                promise.then((result) => {
+                  console.log('Got data!', result);
+                }).catch((error) => {
+                  console.log('Error occurred!', error);
+                });
+
+                This is equivalent to:
+
+                promise.then((result) => {
+                  console.log('Got data!', result);
+                }).then(undefined, (error) => {A
+                  console.log('Error occurred!', erroAr);
+                });
+
+            </textarea>
+        </section>
+
         <section data-markdown >
             <textarea data-template>
                 # Chaining Promises
 
                 ````promise.then((result) => {
-  //we have our result here
-  return getPromise(result); //return a promise here again
-}).then((result) => {
-  //handle the final result
-});
-                ````
+                  //we have our result here
+                  return getPromise(result); //return a promise here again
+                }).then((result) => {
+                  //handle the final result
+                });
+                                ````
 
                 Note:
                 The tricky part is that, when you return a simple value inside then(), the next then() is called with that return value.
@@ -179,26 +216,6 @@
             </textarea>
         </section>
 
-        <section data-markdown >
-            <textarea data-template>
-                # Promise - Handling error
-
-                promise.then((result) => {
-  console.log('Got data!', result);
-}).catch((error) => {
-  console.log('Error occurred!', error);
-});
-
-                This is equivalent to:
-
-promise.then((result) => {
-  console.log('Got data!', result);
-}).then(undefined, (error) => {A
-  console.log('Error occurred!', erroAr);
-});
-
-            </textarea>
-        </section>
 
         <section data-markdown >
             <textarea data-template>
@@ -206,14 +223,14 @@ promise.then((result) => {
 
                 ```
                 Promise.resolve('this always resolves').then(function(data) {
-  alert(data); //this is called
-});
+                      alert(data); //this is called
+                    });
 
-Promise.reject('this always rejects').then(function(data) {
-  alert(data); // this is never called
-}).catch(function(err) {
-  alert(err); //this is called
-});
+                    Promise.reject('this always rejects').then(function(data) {
+                      alert(data); // this is never called
+                    }).catch(function(err) {
+                      alert(err); //this is called
+                    });
 </textarea>
         </section>
 
@@ -221,20 +238,20 @@ Promise.reject('this always rejects').then(function(data) {
             <textarea data-template>
                 # Promise.all
 
-        const p1 = Promise.resolve('foo');
-        const p2 = new Promise((res, rej) => { setTimeout(res, 100, 'bar') });
-        const p3 = "baz"
+                const p1 = Promise.resolve('foo');
+                const p2 = new Promise((res, rej) => { setTimeout(res, 100, 'bar') });
+                const p3 = "baz"
 
-        Promise.all(p1, p2, p3)
-          .then(([a1, a2, a3]) => console.log(a1, a2, a3));
-        // "foo" "bar" "baz"
+                Promise.all(p1, p2, p3)
+                  .then(([a1, a2, a3]) => console.log(a1, a2, a3));
+                // "foo" "bar" "baz"
 
-        --error--
-        const p4 = Promise.reject('qux');
-        all(p1, p2, p3, p4)
-          .then(([a1, a2, a3]) => console.log(a1, a2, a3))
-          .catch(e => console.log(e));
-        // "qux"
+                --error--
+                const p4 = Promise.reject('qux');
+                all(p1, p2, p3, p4)
+                  .then(([a1, a2, a3]) => console.log(a1, a2, a3))
+                  .catch(e => console.log(e));
+                // "qux"
 
 
                 ```
@@ -244,32 +261,20 @@ Promise.reject('this always rejects').then(function(data) {
             <textarea data-template>
                 # Promise.race
 
-   const p1 = new Promise((res, rej) => { setTimeout(res, 200, 'foo') });
-const p2 = new Promise((res, rej) => { setTimeout(res, 100, 'bar') });
-race(p1, p2).then(a => console.log(a)); // "bar"
+                const p1 = new Promise((res, rej) => { setTimeout(res, 200, 'foo') });
+                const p2 = new Promise((res, rej) => { setTimeout(res, 100, 'bar') });
+                race(p1, p2).then(a => console.log(a)); // "bar"
 
-const p3 = Promise.reject('qux');
-race(p1, p2, p3)
-  .then(a => console.log(a))
-  .catch(e => console.log(e)); // "baz"
+                const p3 = Promise.reject('qux');
+                race(p1, p2, p3)
+                .then(a => console.log(a))
+                .catch(e => console.log(e)); // "baz"
 
-
-                ```
             </textarea>
         </section>
 
         <section data-markdown >
             <textarea data-template>
-
-
-                promise.then((data) => {
-                  console.log('Got data:'+data);
-                }, (err) => {
-                  console.log('Promise rejected:'+err.message);
-                });
-                ```
-
-                ```
                 const verifyUser = function(username, password) {
    database.verifyUser(username, password)
        .then(userInfo => dataBase.getRoles(userInfo))
@@ -281,13 +286,52 @@ race(p1, p2, p3)
            //do whatever the error handler needs
        });
 };
-                ```
             </textarea>
         </section>
 
+
         <section data-markdown >
             <textarea data-template>
-                # Promise race / others?
+                # Async/Await
+
+                ES2017
+
+                async function read () {
+                  var txt = await samplePromise();
+                  console.log(txt);
+                }
+
+                // promise way
+                function read () {
+                  samplePromise().then(txt =>console.log(txt))
+                }
+
+
+                Note:
+                         ES7 feature - babel
+
+            The resulting code is much cleaner.
+            Error handling is much simpler and it relies on try/catch just like in any other synchronous code.
+            Debugging is much simpler. Setting a breakpoint inside a .then block will not move to the next .then
+            with debugger you can step through await calls as if they were synchronous calls.
+
+              > an Async Function always returns a Promise
+           </textarea>
+        </section>
+
+
+        <section data-markdown >
+            <textarea data-template>
+                # Async/Await - errors catch
+
+            async function read () {
+                try{
+                  var txt = await samplePromise();
+                  console.log(txt);
+                  } catch(e) {
+                    // finished with failure, reject the promise
+                  }
+                }
             </textarea>
         </section>
 
@@ -295,81 +339,236 @@ race(p1, p2, p3)
             <textarea data-template>
                 # Async/Await
 
-                ```const verifyUser = async function(username, password){
-   try {
-       const userInfo = await dataBase.verifyUser(username, password);
-       const rolesInfo = await dataBase.getRoles(userInfo);
-       const logStatus = await dataBase.logAccess(userInfo);
-       return userInfo;
-   }catch (e){
-       //handle errors as needed
-   }
-};
+
+                            //await
+                            ```const verifyUser = async function(username, password){
+               try {
+                   const userInfo = await dataBase.verifyUser(username, password);
+                   const rolesInfo = await dataBase.getRoles(userInfo);
+                   const logStatus = await dataBase.logAccess(userInfo, userInfo);
+                   return userInfo;
+               }catch (e){
+                   //handle errors as needed
+               }
+            };
                 ```
-
-
-                ?
-
-                 ES7 feature - babel
-
-            The resulting code is much cleaner.
-            Error handling is much simpler and it relies on try/catch just like in any other synchronous code.
-            Debugging is much simpler. Setting a breakpoint inside a .then block will not move to the next .then
-            with debugger you can step through await calls as if they were synchronous calls.
             </textarea>
         </section>
 
         <section data-markdown >
             <textarea data-template>
-                # Async/Await - do czego sie kompiluje?
+            # Async/Await Bonus
+
+            //Promise.all
+            const all = (...params) => Promise.all(...params);
+            const [r1, r2] = await all(p1, p2);
+
+            //Spread for array of promises
+            const [...results] = await all(...requests);
             </textarea>
         </section>
 
         <section data-markdown >
             <textarea data-template>
-                # Async/Await - errors catch
-            </textarea>
-        </section>
+            # Client <-> Server
 
-        <section data-markdown >
-            <textarea data-template>
-                # Observables?
-            </textarea>
-        </section>
+            !imt API.png
 
-        <section data-markdown >
-            <textarea data-template>
-                # Generators?
             </textarea>
         </section>
 
         <section data-markdown >
             <textarea data-template>
                 # Fetch
+
+            <!--XMLHttpRequest-->
+                const reqError = (err) => console.log('Fetch Error :-S', err);
+                const reqListener = () => {
+                  var data = JSON.parse(this.responseText);
+                  console.log(data);
+                }
+
+                const oReq = new XMLHttpRequest();
+                oReq.onload = reqListener;
+                oReq.onerror = reqError;
+                oReq.open('get', './api/some.json', true);
+                oReq.send();
+
+                <!--JQuery-->
+                $.ajax('some-url', {
+                  success: (data) => { /* do something with the data */ },
+                  error: (err) => { /* do something when an error happens */}
+                });
+
+                <!--FETCH-->
+                fetch('./api/some.json')
+                .then(response => response.json())
+                .then(data => console.log('data is', data))
+                .catch(error => console.log('error is', error));
+
+                Note:
+                fetch() allows you to make network requests similar to XMLHttpRequest (XHR).
+                The main difference is that the Fetch API uses Promises, which enables a simpler and cleaner API,
+                avoiding callback hell and having to remember the complex API of XMLHttpRequest.
+
+                The response of a fetch() request is a Stream object, which means that when we call the json() method,
+                a Promise is returned since the reading of the stream will happen asynchronously.
+
+                POKAZAC przyklad w przegladarce z fetch() bo dzala ;)
+            </textarea>
+        </section>
+
+
+        <section data-markdown >
+            <textarea data-template>
+                # Fetch compatibility
+
+                img! fetch_support [dropbox]
+
+                Polyfills:
+                - whatwg-fetch [IE10+]
+                - wisomorphic-fetch
+                - fetch-ie8
+
             </textarea>
         </section>
 
         <section data-markdown >
             <textarea data-template>
-                # Fetch compatibility / polyfills?
+                # Response Metadata
+
+                fetch('users.json', options)'
+
+                //response
+                {
+                  body: ReadableStream
+                  bodyUsed: false
+                  headers: Headers
+                  ok : true
+                  redirected : false
+                  status : 200 // 400 Bad Request, 404 Not Found, 401 Unauthorized,
+                  statusText : "OK"
+                  type : "cors"
+                  url : "http://some-website.com/some-url"
+                  __proto__ : Response
+                }
+
+
+                Note:
+                >When a request is made for a resource on the same origin, the response will have a basic type and there aren't any restrictions on what you can view from the response.
+                If a request is made for a resource on another origin which returns the CORs headers, then the type is cors.
+                >cors and basic responses are almost identical except that a cors response restricts the headers you can view
+                >An opaque response is for a request made for a resource on a different origin that doesn't return CORS headers.
+                With an opaque response we won't be able to read the data returned or view the status of the request, meaning we can't check if the request was successful or not.
+                >no-cors is intended to make requests to other origins that do not have CORS headers and result in an opaque response, but as stated, this isn't possible in the window global scope at the moment.
+
+
+            </textarea>
+        </section>
+
+
+        <section data-markdown >
+            <textarea data-template>
+                # POST
+
+                fetch(url, {
+                    method: 'POST', // *GET, POST, PUT, DELETE, etc.
+                    headers: {
+                      "Content-type": "application/x-www-form-urlencoded; charset=UTF-8"
+                    },
+                    credentials: 'include', // include, same-origin, *omit
+                    cache: 'no-cache', // *default, no-cache, reload, force-cache
+                    mode: 'cors', // no-cors, cors, *same-origin
+                    body: 'foo=bar&lorem=ipsum', // string, FormData
+                    redirect: 'follow', // manual, *follow, error
+                    referrer: 'no-referrer', // *client, no-referrer
+                  })
+                  .then(response => {
+                    if (response.ok) {
+                      return response.json() //arrayBuffer, blob, json, text, formData,
+                    } else {
+                      // Find some way to get to execute .catch()
+                    }
+                  .catch(function (error) {
+                    throw new Error('something went wrong!')
+                    //or
+                    return Promise.reject('something went wrong!')
+                  });
+
+                Note:
+                At the moment there is no way to cancel a fetch,
+
+                Here, I choose to use Promise.reject because it's easier to implement.
+                Errors are cool too, but they're harder to implement, and the only benefit of an Error is a stack trace, which would be non-existent in a Fetch request anyway.
+
+                The Promise returned from fetch() won’t reject on HTTP error status even if the response is an HTTP 404 or 500. Instead, it will resolve normally (with ok status set to false), and it will only reject on network failure or if anything prevented the request from completing.
+                By default, fetch won't send or receive any cookies from the server, resulting in unauthenticated requests if the site relies on maintaining a user session (to send cookies, the credentials init option must be set).
+
+                If you only want to send credentials if the request URL is on the same origin as the calling script, add credentials: 'same-origin'.
+
+                Files can be uploaded using an HTML <input type="file" /> input element, FormData() and fetch().
+
+                redirect:
+                If it is "follow", fetch() API follows the redirect response (HTTP status code = 301,302,303,307,308).
+                If it is "error", fetch() API treats the redirect response as an error.
+                If it is "manual", fetch() API doesn't follow the redirect and returns an opaque-redirect filtered response which wraps the redirect response.
+
+                “default” means use the default behavior of browsers when downloading resources.  The browser first looks inside the HTTP cache to see if there is a matching request.  If there is, and it is fresh, it will be returned from fetch().  If it exists but is stale, a conditional request is made to the remote server and if the server indicates that the response has not changed, it will be read from the HTTP cache.  Otherwise it will be downloaded from the network, and the HTTP cache will be updated with the new response.
+                “reload” means bypass the HTTP cache on the way to the network, but update it with the newly downloaded response.  This will cause the browser to never look inside the HTTP cache on the way to the network, but update the HTTP cache with the downloaded response. Future requests can use that updated response if appropriate.
+                “no-cache” means always validate a response that is in the HTTP cache even if the browser thinks that it’s fresh.  This will cause the browser to look for a matching request in the HTTP cache on the way to the network.  If such a request is found, the browser always creates a conditional request to validate it even if it thinks that the response should be fresh.  If a matching cached entry is not found, a normal request will be made.  After a response has been downloaded, the HTTP cache will always be updated with that response.
+                “force-cache” means that the browser will always use a cached response if a matching entry is found in the cache, ignoring the validity of the response.  Thus even if a really old version of the response is found in the cache, it will always be used without validation.  If a matching entry is not found in the cache, the browser will make a normal request, and will update the HTTP cache with the downloaded response.
             </textarea>
         </section>
 
         <section data-markdown >
             <textarea data-template>
-                # Fetch api
+                # Fetch - Async / Await
+
+                async function fetchTopFive(sub) {
+                try{
+                  const URL = `https://www.reddit.com/r/${sub}/top/.json?limit=5`;
+                  const fetchResult = fetch(URL)
+                  const response = await fetchResult;
+                  const jsonData = await response.json();
+                  console.log(jsonData);
+                  } catch(e){
+                    throw Error(e);
+                  }
+                }
+
+                fetchTopFive('javascript')
+
             </textarea>
         </section>
 
-        <section data-markdown >
-            <textarea data-template>
-                # Fetch alternatives: axios
-            </textarea>
-        </section>
 
         <section data-markdown >
             <textarea data-template>
-                # Fetch alternatives: other?
+                # Fetch alternatives: axios [4.82 kB]
+
+                <!--POST-->
+                axios.post('/user', {
+                    firstName: 'Fred',
+                    lastName: 'Flintstone'
+                  })
+                  .then(function (response) {
+                    console.log(response);
+                  })
+                  .catch(function (error) {
+                    console.log(error);
+                  });
+
+                <!--GET-->
+                 const response = await axios.get('/user?ID=12345');
+
+                Note:
+                In order to fix all my problem, i find Axios for my rescue. Axios is a Promise based HTTP client for the browser and node.js.
+                Advantages of using Axios:
+                1. Transformers: allow performing transforms on data before request is made or after response is received.
+                2. Interceptors: allow you to alter the request or response entirely (headers as well). also perform async operations before request is made or before Promise settles.
+                3. Built-in XSRF protection.
+                4. Make XMLHttpRequests from the browser & http requests from node.js.
+                5. Cancel requests and timeout feature.
             </textarea>
         </section>
 
@@ -388,21 +587,11 @@ race(p1, p2, p3)
 
 
         <!--OLD WAY-->
-        <section data-markdown class="three">
-            <script type="text/template">
-                Synchronous way: It waits for each operation to complete, after that only it executes the next operation.
-                For your query: The console.log() command will not be executed until & unless the query has finished executing to get all the result from Database.
+        <!--OLD WAY-->
+        <!--OLD WAY-->
+        <!--OLD WAY-->
+        <!--OLD WAY-->
 
-                Asynchronous way: It never waits for each operation to complete, rather it executes all operations in the first GO only.
-                The result of each operation will be handled once the result is available. For your query: The console.log()
-                command will be executed soon after the Database.Query() method. While the Database query runs in the background and loads the result
-                once it is finished retrieving the data.
-
-                Use cases
-                If your operations are not doing very heavy lifting like querying huge data from DB then go ahead with Synchronous way otherwise Asynchronous way.
-                In Asynchronous way you can show some Progress indicator to the user while in background you can continue with your heavy weight works. This is an ideal scenario for GUI apps.
-            </script>
-        </section>
 
         <!--JACKIE CHAN-->
         <section data-background-image="/img/lee.png">
