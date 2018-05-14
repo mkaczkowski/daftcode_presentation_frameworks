@@ -10,11 +10,11 @@
     <link rel="stylesheet" href="css/theme/daftcode.css">
     <link rel="stylesheet" href="lib/css/zenburn.css">
     <script>
-        var link = document.createElement("link")
-        link.rel = "stylesheet"
-        link.type = "text/css"
-        link.href = window.location.search.match(/print-pdf/gi) ? "css/print/pdf.css" : "css/print/paper.css"
-        document.getElementsByTagName("head")[0].appendChild(link)
+      var link = document.createElement("link")
+      link.rel = "stylesheet"
+      link.type = "text/css"
+      link.href = window.location.search.match(/print-pdf/gi) ? "css/print/pdf.css" : "css/print/paper.css"
+      document.getElementsByTagName("head")[0].appendChild(link)
     </script>
 </head>
 <body>
@@ -27,361 +27,255 @@
     <div class="slides">
 
         <!--INTRO-->
-        <section data-markdown class="intro">
-        <textarea data-template>
-        ![Img](/img/baner.png)
-         - Asynchronous JS <!-- .element: class="h4" -->
-         - + Fetch API <!-- .element: class="h5" -->
-         - Mariusz Kaczkowski <!-- .element: class="author" -->
-        </textarea>
-        </section>
+        <!--<section data-markdown class="intro">-->
+            <!--<textarea data-template>-->
+            <!--![Img](/img/baner.png)-->
+             <!-- - Asynchronous JS &lt;!&ndash; .element: class="h4" &ndash;&gt;-->
+             <!-- - & Fetch API &lt;!&ndash; .element: class="h5" &ndash;&gt;-->
+             <!-- - Mariusz Kaczkowski &lt;!&ndash; .element: class="author" &ndash;&gt;-->
+            <!--</textarea>-->
+        <!--</section>-->
+
+        <!--<section data-markdown>-->
+            <!--<textarea data-template>-->
+
+                <!--## Sync vs Async-->
+
+                <!--<div class="my-container">-->
+                <!--![Img](http://www.phpmind.com/blog/wp-content/uploads/2017/05/synchronous-asynchronous-javascript.png)-->
+                <!--</div>-->
+
+                <!--Note:-->
+                <!--Synchronous way: It waits for each operation to complete, after that only it executes the next operation.-->
+                <!--For your query: The console.log() command will not be executed until & unless the query has finished executing to get all the result from Database.-->
+
+                <!--Asynchronous way: It never waits for each operation to complete, rather it executes all operations in the first GO only.-->
+                <!--The result of each operation will be handled once the result is available. For your query: The console.log()-->
+                <!--command will be executed soon after the Database.Query() method. Whilegf the Database query runs in the background and loads the result-->
+                <!--once it is finished retrieving the data.-->
+
+                <!--Use cases-->
+                <!--If your operations are not doing very heavy lifting like querying huge data from DB then go ahead with Synchronous way otherwise Asynchronous way.-->
+                <!--In Asynchronous way you can show some Progress indicator to the user while in background you can continue with your heavy weight works. This is an ideal scenario for GUI apps.-->
+            <!--</textarea>-->
+        <!--</section>-->
+
+        <!--<section data-markdown>-->
+            <!--<textarea data-template>-->
+                <!--## JS Engine-->
+    <!---->
+                <!--![Img](/img/event_loop.png)-->
+    <!---->
+                <!--# link do YT video !-->
+                <!--Philip Roberts: What the heck is the event loop anyway? | JSConf EU 2014-->
+                <!--https://www.youtube.com/watch?v=8aGhZQkoFbQ-->
+            <!--</textarea>-->
+        <!--</section>-->
+
+        <!--<section data-markdown>-->
+            <!--<textarea data-template>-->
+                <!--## Async techniques-->
+                <!--* Callbacks-->
+                <!--* Promises-->
+                <!--* Async / Await-->
+                <!--* Generators*-->
+            <!--</textarea>-->
+        <!--</section>-->
+
+        <!--<section data-markdown>-->
+            <!--<textarea data-template>-->
+                <!--## Callback ➡ call you back later-->
+
+                <!--![Img](/img/callback.png)-->
+
+                <!--Note:-->
+                <!--Callbacks are just the name of a convention for using JavaScript functions. There isn't a special thing called a-->
+                <!--'callback' in the JavaScript language, it's just a convention. Instead of immediately returning some result like most-->
+                <!--functions, functions that use callbacks take some time to produce a result. The word 'asynchronous', aka 'async' just means-->
+                <!--'takes some time' or 'happens in the future, not right now'.-->
+
+                <!--Note that the handlePhoto is not invoked yet, it is just created and passed as a callback into downloadPhoto.-->
+                <!--But it won't run until downloadPhoto finishes doing its task, which could take a long time depending on how fast the Internet connection is.-->
+            <!--</textarea>-->
+        <!--</section>-->
+
+        <!--<section data-markdown>-->
+            <!--<textarea data-template>-->
+                <!--## Callback Hell-->
+
+                <!--![Img](/img/callback_hell.png)-->
+
+                <!--Note:-->
+                <!--Each function gets an argument which is another function that is called with a parameter that is the response of the previous action.-->
+
+                <!--Callback hell is caused by poor coding practices. Luckily writing better code isn't that hard!-->
+
+                <!--"Write small modules that each do one thing, and assemble them into other modules that do a bigger thing. You can't get into callback hell if you don't go there."-->
+                <!--Isaac Schlueter-->
+            <!--</textarea>-->
+        <!--</section>-->
+
+        <!--<section data-markdown>-->
+            <!--<textarea data-template>-->
+                <!--## Promise-->
+
+                <!--![Img](/img/promise-catch.png)-->
+
+                <!--* pending-->
+                <!--* fulfilled-->
+                <!--* rejected-->
+
+                <!--Note:-->
+
+                <!--Status:-->
+                <!--: initial state, neither fulfilled nor rejected.-->
+                <!--: meaning that the operation completed successfully.-->
+                <!--: meaning that the operation failed.-->
 
 
-        <section data-markdown >
-        <textarea data-template>
-            ![Img](http://www.phpmind.com/blog/wp-content/uploads/2017/05/synchronous-asynchronous-javascript.png)
+                <!--Many of us have already used promises in the form of libraries such as Q, when.js, RSVP.js, etc.-->
+                <!--Even jQuery has something called a Deferred object, which is similar to a promise. But now we have native support for promises in JavaScript, which is really exciting.-->
 
-            Note:
-            Synchronous way: It waits for each operation to complete, after that only it executes the next operation.
-            For your query: The console.log() command will not be executed until & unless the query has finished executing to get all the result from Database.
+                <!--A Promise object represents a value that may not be available yet, but will be resolved at some point in the future.-->
+                <!--It allows you to write asynchronous code in a more synchronous fashion. For example, if you use the promise API to make an asynchronous-->
+                <!--call to a remote web service, you will create a Promise object which represents the data that will be returned by the web service in future.-->
+                <!--The caveat is that the actual data isn’t available yet. It will become available when the request completes and a response comes back from the web service.-->
+                <!--In the meantime, the Promise object acts like a proxy to the actual data.-->
+                <!--Furthermore, you can attach callbacks to the Promise object, which will be called once the actual data is available.-->
 
-            Asynchronous way: It never waits for each operation to complete, rather it executes all operations in the first GO only.
-            The result of each operation will be handled once the result is available. For your query: The console.log()
-            command will be executed soon after the Database.Query() method. While the Database query runs in the background and loads the result
-            once it is finished retrieving the data.
+                <!--In case of an error, reject() is called with an Error object. This indicates that the promise is rejected.-->
 
-            Use cases
-            If your operations are not doing very heavy lifting like querying huge data from DB then go ahead with Synchronous way otherwise Asynchronous way.
-            In Asynchronous way you can show some Progress indicator to the user while in background you can continue with your heavy weight works. This is an ideal scenario for GUI apps.
-        </textarea>
-        </section>
 
-        <section data-markdown >
-        <textarea data-template>
-            # opis jak wykonywane sa operacje sync/async w JS
+            <!--</textarea>-->
+        <!--</section>-->
 
-            img!: pobrane/event_loop.png
 
-            # link do YT video !
-            Philip Roberts: What the heck is the event loop anyway? | JSConf EU 2014
-            https://www.youtube.com/watch?v=8aGhZQkoFbQ
-        </textarea>
-        </section>
+        <!--<section data-markdown>-->
+            <!--<textarea data-template>-->
+                <!--## Promise - Sample-->
+                <!--![Img](/img/promise.png)-->
+            <!--</textarea>-->
+        <!--</section>-->
 
-        <section data-markdown >
+        <!--<section data-markdown>-->
+            <!--<textarea data-template>-->
+                <!--## Promise - Handling error-->
+                <!--![Img](/img/promise_error.png)-->
+            <!--</textarea>-->
+        <!--</section>-->
+
+
+        <!--<section data-markdown>-->
+            <!--<textarea data-template>-->
+                <!--## Promise - Flow-->
+                <!--<div class="my-container">-->
+                    <!--![Img](/img/Chaining-Copy-1.png)-->
+                <!--</div>-->
+            <!--</textarea>-->
+        <!--</section>-->
+
+        <!--<section data-markdown>-->
+            <!--<textarea data-template>-->
+                <!--## Chaining Promises-->
+
+                <!--![Img](/img/promise_return.png)-->
+
+                <!--Note:-->
+                <!--The tricky part is that, when you return a simple value inside then(), the next then() is called with that return value.-->
+                <!--But if you return a promise inside then(), the next then() waits on it and gets called when that promise is settled.-->
+            <!--</textarea>-->
+        <!--</section>-->
+
+
+        <!--<section data-markdown>-->
+            <!--<textarea data-template>-->
+                <!--## Promise utils-->
+                <!--![Img](/img/promise_utils.png)-->
+            <!--</textarea>-->
+        <!--</section>-->
+
+        <!--<section data-markdown>-->
+            <!--<textarea data-template>-->
+                <!--## Promise utils-->
+                <!--<div class="my-container">-->
+                    <!--![Img](/img/Creating-Promises.png)-->
+                <!--</div>-->
+            <!--</textarea>-->
+        <!--</section>-->
+
+        <!--<section data-markdown>-->
+            <!--<textarea data-template>-->
+            <!--# Promise.all-->
+            <!--![Img](/img/promise_all.png)-->
+            <!--</textarea>-->
+        <!--</section>-->
+        <!---->
+        <!--<section data-markdown>-->
+            <!--<textarea data-template>-->
+                <!--## Promise.race-->
+                <!--![Img](/img/race.png)-->
+            <!--</textarea>-->
+        <!--</section>-->
+
+        <!--<section data-markdown>-->
+            <!--<textarea data-template>-->
+            <!--## Promise - example-->
+            <!--![Img](/img/promise_sample.png)-->
+            <!--</textarea>-->
+        <!--</section>-->
+
+        <!--<section data-markdown>-->
+            <!--<textarea data-template>-->
+                <!--## async / await-->
+
+                <!--![Img](/img/async_await.png)-->
+
+                <!--Note:-->
+                <!--ES7 feature - babel-->
+
+                <!--The resulting code is much cleaner.-->
+                <!--Error handling is much simpler and it relies on try/catch just like in any other synchronous code.-->
+                <!--Debugging is much simpler. Setting a breakpoint inside a .then block will not move to the next .then-->
+                <!--with debugger you can step through await calls as if they were synchronous calls.-->
+
+                <!--&gt; an Async Function always returns a Promise-->
+           <!--</textarea>-->
+        <!--</section>-->
+
+
+        <!--<section data-markdown>-->
+            <!--<textarea data-template>-->
+                <!--## async / await - errors-->
+                <!--![Img](/img/async_error.png)-->
+            <!--</textarea>-->
+        <!--</section>-->
+
+        <!--<section data-markdown>-->
+            <!--<textarea data-template>-->
+                <!--## async / await - sample-->
+                <!--![Img](/img/async_sample.png)-->
+            <!--</textarea>-->
+        <!--</section>-->
+
+        <section data-markdown>
             <textarea data-template>
-                # Asynchronous techniques
-                * Callbacks
-                * Promises
-                * Async / Await
+                ## async / await bonus 🚀
+                ![Img](/img/async_all.png)
             </textarea>
         </section>
 
-        <section data-markdown >
+        <section data-markdown>
             <textarea data-template>
-                # Callback ('call you back later')
-
-                ```
-function handlePhoto (error, photo) {
-    if (error) console.error('Download error!', error)
-    else console.log('Download finished', photo)
-}
-
-downloadPhoto('http://coolcats.com/cat.gif', handlePhoto)
-                ```
-
-                !callback.png
-
-                Note:
-                Callbacks are just the name of a convention for using JavaScript functions. There isn't a special thing called a
-                'callback' in the JavaScript language, it's just a convention. Instead of immediately returning some result like most
-                functions, functions that use callbacks take some time to produce a result. The word 'asynchronous', aka 'async' just means
-                'takes some time' or 'happens in the future, not right now'.
-
-                Note that the handlePhoto is not invoked yet, it is just created and passed as a callback into downloadPhoto.
-                But it won't run until downloadPhoto finishes doing its task, which could take a long time depending on how fast the Internet connection is.
+                ## Client <-> Server
+                ![Img](/img/API.png)
             </textarea>
         </section>
 
-        <section data-markdown >
-            <textarea data-template>
-                # Callback Hell
-
-                !img callback_hell.png
-
-                ```const verifyUser = function(username, password, callback){
-   dataBase.verifyUser(username, password, (error, userInfo) => {
-       if (error) {
-           callback(error)
-       }else{
-           dataBase.getRoles(username, (error, roles) => {
-               if (error){
-                   callback(error)
-               }else {
-                   dataBase.logAccess(username, (error) => {
-                       if (error){
-                           callback(error);
-                       }else{
-                           callback(null, userInfo, roles);
-                       }
-                   })
-               }
-           })
-       }
-   })
-};
-                ```
-                Callback hell is caused by poor coding practices. Luckily writing better code isn't that hard!
-
-                "Write small modules that each do one thing, and assemble them into other modules that do a bigger thing. You can't get into callback hell if you don't go there."
-                Isaac Schlueter
-
-                Note:
-                Each function gets an argument which is another function that is called with a parameter that is the response of the previous action.
-            </textarea>
-        </section>
-
-        <section data-markdown >
-            <textarea data-template>
-                # Promise
-
-                https://caniuse.com/#feat=promises
-
-                ```
-                const promise = new Promise((resolve, reject) => {
-                //asynchronous code goes here
-                 const request = new XMLHttpRequest();
-                  request.open('GET', 'https://api.spacex.com/launch/1');
-                  request.onload = () => {
-                    if (request.status === 200) {
-                      resolve(request.response); // we got data here, so resolve the Promise
-                    } else {
-                      reject(new Error(request.statusText)); // status is not 200 OK, so reject
-                    }
-                }
-                });
-
-                Note:
-                Many of us have already used promises in the form of libraries such as Q, when.js, RSVP.js, etc.
-                Even jQuery has something called a Deferred object, which is similar to a promise. But now we have native support for promises in JavaScript, which is really exciting.
-
-                A Promise object represents a value that may not be available yet, but will be resolved at some point in the future.
-                It allows you to write asynchronous code in a more synchronous fashion. For example, if you use the promise API to make an asynchronous
-                call to a remote web service, you will create a Promise object which represents the data that will be returned by the web service in future.
-                The caveat is that the actual data isn’t available yet. It will become available when the request completes and a response comes back from the web service.
-                In the meantime, the Promise object acts like a proxy to the actual data.
-                Furthermore, you can attach callbacks to the Promise object, which will be called once the actual data is available.
-
-                In case of an error, reject() is called with an Error object. This indicates that the promise is rejected.
-            </textarea>
-        </section>
-
-
-        <section data-markdown >
-            <textarea data-template>
-                # Promise - Handling error
-
-                promise.then((result) => {
-                  console.log('Got data!', result);
-                }).catch((error) => {
-                  console.log('Error occurred!', error);
-                });
-
-                This is equivalent to:
-
-                promise.then((result) => {
-                  console.log('Got data!', result);
-                }).then(undefined, (error) => {A
-                  console.log('Error occurred!', erroAr);
-                });
-
-            </textarea>
-        </section>
-
-        <section data-markdown >
-            <textarea data-template>
-                # Chaining Promises
-
-                ````promise.then((result) => {
-                  //we have our result here
-                  return getPromise(result); //return a promise here again
-                }).then((result) => {
-                  //handle the final result
-                });
-                                ````
-
-                Note:
-                The tricky part is that, when you return a simple value inside then(), the next then() is called with that return value.
-                But if you return a promise inside then(), the next then() waits on it and gets called when that promise is settled.
-            </textarea>
-        </section>
-
-
-        <section data-markdown >
-            <textarea data-template>
-                # Promise utils
-
-                ```
-                Promise.resolve('this always resolves').then(function(data) {
-                      alert(data); //this is called
-                    });
-
-                    Promise.reject('this always rejects').then(function(data) {
-                      alert(data); // this is never called
-                    }).catch(function(err) {
-                      alert(err); //this is called
-                    });
-</textarea>
-        </section>
-
-                   <section data-markdown >
-            <textarea data-template>
-                # Promise.all
-
-                const p1 = Promise.resolve('foo');
-                const p2 = new Promise((res, rej) => { setTimeout(res, 100, 'bar') });
-                const p3 = "baz"
-
-                Promise.all(p1, p2, p3)
-                  .then(([a1, a2, a3]) => console.log(a1, a2, a3));
-                // "foo" "bar" "baz"
-
-                --error--
-                const p4 = Promise.reject('qux');
-                all(p1, p2, p3, p4)
-                  .then(([a1, a2, a3]) => console.log(a1, a2, a3))
-                  .catch(e => console.log(e));
-                // "qux"
-
-
-                ```
-            </textarea>
-        </section>
-                   <section data-markdown >
-            <textarea data-template>
-                # Promise.race
-
-                const p1 = new Promise((res, rej) => { setTimeout(res, 200, 'foo') });
-                const p2 = new Promise((res, rej) => { setTimeout(res, 100, 'bar') });
-                race(p1, p2).then(a => console.log(a)); // "bar"
-
-                const p3 = Promise.reject('qux');
-                race(p1, p2, p3)
-                .then(a => console.log(a))
-                .catch(e => console.log(e)); // "baz"
-
-            </textarea>
-        </section>
-
-        <section data-markdown >
-            <textarea data-template>
-                const verifyUser = function(username, password) {
-   database.verifyUser(username, password)
-       .then(userInfo => dataBase.getRoles(userInfo))
-       .then(rolesInfo => dataBase.logAccess(rolesInfo))
-       .then(finalResult => {
-           //do whatever the 'callback' would do
-       })
-       .catch((err) => {
-           //do whatever the error handler needs
-       });
-};
-            </textarea>
-        </section>
-
-
-        <section data-markdown >
-            <textarea data-template>
-                # Async/Await
-
-                ES2017
-
-                async function read () {
-                  var txt = await samplePromise();
-                  console.log(txt);
-                }
-
-                // promise way
-                function read () {
-                  samplePromise().then(txt =>console.log(txt))
-                }
-
-
-                Note:
-                         ES7 feature - babel
-
-            The resulting code is much cleaner.
-            Error handling is much simpler and it relies on try/catch just like in any other synchronous code.
-            Debugging is much simpler. Setting a breakpoint inside a .then block will not move to the next .then
-            with debugger you can step through await calls as if they were synchronous calls.
-
-              > an Async Function always returns a Promise
-           </textarea>
-        </section>
-
-
-        <section data-markdown >
-            <textarea data-template>
-                # Async/Await - errors catch
-
-            async function read () {
-                try{
-                  var txt = await samplePromise();
-                  console.log(txt);
-                  } catch(e) {
-                    // finished with failure, reject the promise
-                  }
-                }
-            </textarea>
-        </section>
-
-        <section data-markdown >
-            <textarea data-template>
-                # Async/Await
-
-
-                            //await
-                            ```const verifyUser = async function(username, password){
-               try {
-                   const userInfo = await dataBase.verifyUser(username, password);
-                   const rolesInfo = await dataBase.getRoles(userInfo);
-                   const logStatus = await dataBase.logAccess(userInfo, userInfo);
-                   return userInfo;
-               }catch (e){
-                   //handle errors as needed
-               }
-            };
-                ```
-            </textarea>
-        </section>
-
-        <section data-markdown >
-            <textarea data-template>
-            # Async/Await Bonus
-
-            //Promise.all
-            const all = (...params) => Promise.all(...params);
-            const [r1, r2] = await all(p1, p2);
-
-            //Spread for array of promises
-            const [...results] = await all(...requests);
-            </textarea>
-        </section>
-
-        <section data-markdown >
-            <textarea data-template>
-            # Client <-> Server
-
-            !imt API.png
-
-            </textarea>
-        </section>
-
-        <section data-markdown >
+        <section data-markdown>
             <textarea data-template>
                 # Fetch
 
-            <!--XMLHttpRequest-->
+                <!--XMLHttpRequest-->
                 const reqError = (err) => console.log('Fetch Error :-S', err);
                 const reqListener = () => {
                   var data = JSON.parse(this.responseText);
@@ -419,7 +313,7 @@ downloadPhoto('http://coolcats.com/cat.gif', handlePhoto)
         </section>
 
 
-        <section data-markdown >
+        <section data-markdown>
             <textarea data-template>
                 # Fetch compatibility
 
@@ -433,7 +327,7 @@ downloadPhoto('http://coolcats.com/cat.gif', handlePhoto)
             </textarea>
         </section>
 
-        <section data-markdown >
+        <section data-markdown>
             <textarea data-template>
                 # Response Metadata
 
@@ -467,7 +361,7 @@ downloadPhoto('http://coolcats.com/cat.gif', handlePhoto)
         </section>
 
 
-        <section data-markdown >
+        <section data-markdown>
             <textarea data-template>
                 # POST
 
@@ -506,7 +400,7 @@ downloadPhoto('http://coolcats.com/cat.gif', handlePhoto)
 
                 If you only want to send credentials if the request URL is on the same origin as the calling script, add credentials: 'same-origin'.
 
-                Files can be uploaded using an HTML <input type="file" /> input element, FormData() and fetch().
+                Files can be uploaded using an HTML <input type="file"/> input element, FormData() and fetch().
 
                 redirect:
                 If it is "follow", fetch() API follows the redirect response (HTTP status code = 301,302,303,307,308).
@@ -520,7 +414,7 @@ downloadPhoto('http://coolcats.com/cat.gif', handlePhoto)
             </textarea>
         </section>
 
-        <section data-markdown >
+        <section data-markdown>
             <textarea data-template>
                 # Fetch - Async / Await
 
@@ -542,7 +436,7 @@ downloadPhoto('http://coolcats.com/cat.gif', handlePhoto)
         </section>
 
 
-        <section data-markdown >
+        <section data-markdown>
             <textarea data-template>
                 # Fetch alternatives: axios [4.82 kB]
 
@@ -572,18 +466,17 @@ downloadPhoto('http://coolcats.com/cat.gif', handlePhoto)
             </textarea>
         </section>
 
-        <section data-markdown >
+        <section data-markdown>
             <textarea data-template>
                 # Live coding
             </textarea>
         </section>
 
-        <section data-markdown >
+        <section data-markdown>
             <textarea data-template>
                 # Zadanie na zajeciach?
             </textarea>
         </section>
-
 
 
         <!--OLD WAY-->
@@ -598,7 +491,7 @@ downloadPhoto('http://coolcats.com/cat.gif', handlePhoto)
         </section>
 
         <!--FRAMEWORKS-->
-        <section data-markdown >
+        <section data-markdown>
             <script type="text/template">
                 ### When we really need it?
                 To build large apps with data changes over time
@@ -755,30 +648,30 @@ downloadPhoto('http://coolcats.com/cat.gif', handlePhoto)
 <script src="js/reveal.js"></script>
 
 <script>
-    // More info about config & dependencies:
-    // - https://github.com/hakimel/reveal.js#configuration
-    // - https://github.com/hakimel/reveal.js#dependencies
-    Reveal.initialize({
-        controls: true,
-        progress: false,
-        touch: false,
-        slideNumber: false,
-        loop: true,
-        mouseWheel: true,
-        // defaultTiming:-1,
-        // parallaxBackgroundImage: "https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg",
-        dependencies: [
-            {src: "plugin/markdown/marked.js"},
-            {src: "plugin/markdown/markdown.js"},
-            {src: 'plugin/zoom-js/zoom.js', async: true},
-            {src: "plugin/notes/notes.js", async: true},
-            {
-                src: "plugin/highlight/highlight.js", async: true, callback: function () {
-                    hljs.initHighlightingOnLoad()
-                },
-            },
-        ],
-    })
+  // More info about config & dependencies:
+  // - https://github.com/hakimel/reveal.js#configuration
+  // - https://github.com/hakimel/reveal.js#dependencies
+  Reveal.initialize({
+    controls: true,
+    progress: false,
+    touch: false,
+    slideNumber: false,
+    loop: true,
+    mouseWheel: true,
+    // defaultTiming:-1,
+    // parallaxBackgroundImage: "https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg",
+    dependencies: [
+      {src: "plugin/markdown/marked.js"},
+      {src: "plugin/markdown/markdown.js"},
+      {src: 'plugin/zoom-js/zoom.js', async: true},
+      {src: "plugin/notes/notes.js", async: true},
+      {
+        src: "plugin/highlight/highlight.js", async: true, callback: function () {
+          hljs.initHighlightingOnLoad()
+        },
+      },
+    ],
+  })
 </script>
 </body>
 </html>

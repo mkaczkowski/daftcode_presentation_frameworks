@@ -299,6 +299,21 @@ img{
 .container{
     display: flex;
 }
+
+.container2{
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.row{
+    /*flex: 3;*/
+    /*align-items: center;*/
+    /*display: flex;*/
+    height:50%;
+}
+
+
 .col_img{
     flex: 3;
     align-items: center;
@@ -339,4 +354,10 @@ section img{
 
 .dom img{
     width:55%;
+}
+
+.my-container{
+    background: #7b7b7b;
+    border-radius: 5px;
+    box-shadow: #333333 0px 0px 5px 5px;
 }
