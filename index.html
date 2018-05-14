@@ -27,278 +27,269 @@
     <div class="slides">
 
         <!--INTRO-->
-        <!--<section data-markdown class="intro">-->
-            <!--<textarea data-template>-->
-            <!--![Img](/img/baner.png)-->
-             <!-- - Asynchronous JS &lt;!&ndash; .element: class="h4" &ndash;&gt;-->
-             <!-- - & Fetch API &lt;!&ndash; .element: class="h5" &ndash;&gt;-->
-             <!-- - Mariusz Kaczkowski &lt;!&ndash; .element: class="author" &ndash;&gt;-->
-            <!--</textarea>-->
-        <!--</section>-->
-
-        <!--<section data-markdown>-->
-            <!--<textarea data-template>-->
-
-                <!--## Sync vs Async-->
-
-                <!--<div class="my-container">-->
-                <!--![Img](http://www.phpmind.com/blog/wp-content/uploads/2017/05/synchronous-asynchronous-javascript.png)-->
-                <!--</div>-->
-
-                <!--Note:-->
-                <!--Synchronous way: It waits for each operation to complete, after that only it executes the next operation.-->
-                <!--For your query: The console.log() command will not be executed until & unless the query has finished executing to get all the result from Database.-->
-
-                <!--Asynchronous way: It never waits for each operation to complete, rather it executes all operations in the first GO only.-->
-                <!--The result of each operation will be handled once the result is available. For your query: The console.log()-->
-                <!--command will be executed soon after the Database.Query() method. Whilegf the Database query runs in the background and loads the result-->
-                <!--once it is finished retrieving the data.-->
-
-                <!--Use cases-->
-                <!--If your operations are not doing very heavy lifting like querying huge data from DB then go ahead with Synchronous way otherwise Asynchronous way.-->
-                <!--In Asynchronous way you can show some Progress indicator to the user while in background you can continue with your heavy weight works. This is an ideal scenario for GUI apps.-->
-            <!--</textarea>-->
-        <!--</section>-->
-
-        <!--<section data-markdown>-->
-            <!--<textarea data-template>-->
-                <!--## JS Engine-->
-    <!---->
-                <!--![Img](/img/event_loop.png)-->
-    <!---->
-                <!--# link do YT video !-->
-                <!--Philip Roberts: What the heck is the event loop anyway? | JSConf EU 2014-->
-                <!--https://www.youtube.com/watch?v=8aGhZQkoFbQ-->
-            <!--</textarea>-->
-        <!--</section>-->
-
-        <!--<section data-markdown>-->
-            <!--<textarea data-template>-->
-                <!--## Async techniques-->
-                <!--* Callbacks-->
-                <!--* Promises-->
-                <!--* Async / Await-->
-                <!--* Generators*-->
-            <!--</textarea>-->
-        <!--</section>-->
-
-        <!--<section data-markdown>-->
-            <!--<textarea data-template>-->
-                <!--## Callback ➡ call you back later-->
-
-                <!--![Img](/img/callback.png)-->
-
-                <!--Note:-->
-                <!--Callbacks are just the name of a convention for using JavaScript functions. There isn't a special thing called a-->
-                <!--'callback' in the JavaScript language, it's just a convention. Instead of immediately returning some result like most-->
-                <!--functions, functions that use callbacks take some time to produce a result. The word 'asynchronous', aka 'async' just means-->
-                <!--'takes some time' or 'happens in the future, not right now'.-->
-
-                <!--Note that the handlePhoto is not invoked yet, it is just created and passed as a callback into downloadPhoto.-->
-                <!--But it won't run until downloadPhoto finishes doing its task, which could take a long time depending on how fast the Internet connection is.-->
-            <!--</textarea>-->
-        <!--</section>-->
-
-        <!--<section data-markdown>-->
-            <!--<textarea data-template>-->
-                <!--## Callback Hell-->
-
-                <!--![Img](/img/callback_hell.png)-->
-
-                <!--Note:-->
-                <!--Each function gets an argument which is another function that is called with a parameter that is the response of the previous action.-->
-
-                <!--Callback hell is caused by poor coding practices. Luckily writing better code isn't that hard!-->
-
-                <!--"Write small modules that each do one thing, and assemble them into other modules that do a bigger thing. You can't get into callback hell if you don't go there."-->
-                <!--Isaac Schlueter-->
-            <!--</textarea>-->
-        <!--</section>-->
-
-        <!--<section data-markdown>-->
-            <!--<textarea data-template>-->
-                <!--## Promise-->
-
-                <!--![Img](/img/promise-catch.png)-->
-
-                <!--* pending-->
-                <!--* fulfilled-->
-                <!--* rejected-->
-
-                <!--Note:-->
-
-                <!--Status:-->
-                <!--: initial state, neither fulfilled nor rejected.-->
-                <!--: meaning that the operation completed successfully.-->
-                <!--: meaning that the operation failed.-->
-
-
-                <!--Many of us have already used promises in the form of libraries such as Q, when.js, RSVP.js, etc.-->
-                <!--Even jQuery has something called a Deferred object, which is similar to a promise. But now we have native support for promises in JavaScript, which is really exciting.-->
-
-                <!--A Promise object represents a value that may not be available yet, but will be resolved at some point in the future.-->
-                <!--It allows you to write asynchronous code in a more synchronous fashion. For example, if you use the promise API to make an asynchronous-->
-                <!--call to a remote web service, you will create a Promise object which represents the data that will be returned by the web service in future.-->
-                <!--The caveat is that the actual data isn’t available yet. It will become available when the request completes and a response comes back from the web service.-->
-                <!--In the meantime, the Promise object acts like a proxy to the actual data.-->
-                <!--Furthermore, you can attach callbacks to the Promise object, which will be called once the actual data is available.-->
-
-                <!--In case of an error, reject() is called with an Error object. This indicates that the promise is rejected.-->
-
-
-            <!--</textarea>-->
-        <!--</section>-->
-
-
-        <!--<section data-markdown>-->
-            <!--<textarea data-template>-->
-                <!--## Promise - Sample-->
-                <!--![Img](/img/promise.png)-->
-            <!--</textarea>-->
-        <!--</section>-->
-
-        <!--<section data-markdown>-->
-            <!--<textarea data-template>-->
-                <!--## Promise - Handling error-->
-                <!--![Img](/img/promise_error.png)-->
-            <!--</textarea>-->
-        <!--</section>-->
-
-
-        <!--<section data-markdown>-->
-            <!--<textarea data-template>-->
-                <!--## Promise - Flow-->
-                <!--<div class="my-container">-->
-                    <!--![Img](/img/Chaining-Copy-1.png)-->
-                <!--</div>-->
-            <!--</textarea>-->
-        <!--</section>-->
-
-        <!--<section data-markdown>-->
-            <!--<textarea data-template>-->
-                <!--## Chaining Promises-->
-
-                <!--![Img](/img/promise_return.png)-->
-
-                <!--Note:-->
-                <!--The tricky part is that, when you return a simple value inside then(), the next then() is called with that return value.-->
-                <!--But if you return a promise inside then(), the next then() waits on it and gets called when that promise is settled.-->
-            <!--</textarea>-->
-        <!--</section>-->
-
-
-        <!--<section data-markdown>-->
-            <!--<textarea data-template>-->
-                <!--## Promise utils-->
-                <!--![Img](/img/promise_utils.png)-->
-            <!--</textarea>-->
-        <!--</section>-->
-
-        <!--<section data-markdown>-->
-            <!--<textarea data-template>-->
-                <!--## Promise utils-->
-                <!--<div class="my-container">-->
-                    <!--![Img](/img/Creating-Promises.png)-->
-                <!--</div>-->
-            <!--</textarea>-->
-        <!--</section>-->
-
-        <!--<section data-markdown>-->
-            <!--<textarea data-template>-->
-            <!--# Promise.all-->
-            <!--![Img](/img/promise_all.png)-->
-            <!--</textarea>-->
-        <!--</section>-->
-        <!---->
-        <!--<section data-markdown>-->
-            <!--<textarea data-template>-->
-                <!--## Promise.race-->
-                <!--![Img](/img/race.png)-->
-            <!--</textarea>-->
-        <!--</section>-->
-
-        <!--<section data-markdown>-->
-            <!--<textarea data-template>-->
-            <!--## Promise - example-->
-            <!--![Img](/img/promise_sample.png)-->
-            <!--</textarea>-->
-        <!--</section>-->
-
-        <!--<section data-markdown>-->
-            <!--<textarea data-template>-->
-                <!--## async / await-->
-
-                <!--![Img](/img/async_await.png)-->
-
-                <!--Note:-->
-                <!--ES7 feature - babel-->
-
-                <!--The resulting code is much cleaner.-->
-                <!--Error handling is much simpler and it relies on try/catch just like in any other synchronous code.-->
-                <!--Debugging is much simpler. Setting a breakpoint inside a .then block will not move to the next .then-->
-                <!--with debugger you can step through await calls as if they were synchronous calls.-->
-
-                <!--&gt; an Async Function always returns a Promise-->
-           <!--</textarea>-->
-        <!--</section>-->
-
-
-        <!--<section data-markdown>-->
-            <!--<textarea data-template>-->
-                <!--## async / await - errors-->
-                <!--![Img](/img/async_error.png)-->
-            <!--</textarea>-->
-        <!--</section>-->
-
-        <!--<section data-markdown>-->
-            <!--<textarea data-template>-->
-                <!--## async / await - sample-->
-                <!--![Img](/img/async_sample.png)-->
-            <!--</textarea>-->
-        <!--</section>-->
+        <section data-markdown class="intro">
+        <textarea data-template>
+        ![Img](/img/baner.png)
+         - Asynchronous JS <!-- .element: class="h4" -->
+         - & Fetch API <!-- .element: class="h5" -->
+         - Mariusz Kaczkowski <!-- .element: class="author" -->
+        </textarea>
+        </section>
 
         <section data-markdown>
-            <textarea data-template>
-                ## async / await bonus 🚀
-                ![Img](/img/async_all.png)
-            </textarea>
+        <textarea data-template>
+
+        ## Sync vs Async
+        <div class="my-container">
+        ![Img](http://www.phpmind.com/blog/wp-content/uploads/2017/05/synchronous-asynchronous-javascript.png)
+        </div>
+
+        Note:
+        Synchronous way: It waits for each operation to complete, after that only it executes the next operation.
+        For your query: The console.log() command will not be executed until & unless the query has finished executing to get all the result from Database.
+
+        Asynchronous way: It never waits for each operation to complete, rather it executes all operations in the first GO only.
+        The result of each operation will be handled once the result is available. For your query: The console.log()
+        command will be executed soon after the Database.Query() method. Whilegf the Database query runs in the background and loads the result
+        once it is finished retrieving the data.
+
+        Use cases
+        If your operations are not doing very heavy lifting like querying huge data from DB then go ahead with Synchronous way otherwise Asynchronous way.
+        In Asynchronous way you can show some Progress indicator to the user while in background you can continue with your heavy weight works. This is an ideal scenario for GUI apps.
+        </textarea>
+        </section>
+
+        <section data-markdown>
+        <textarea data-template>
+        ## JS Engine
+
+        ![Img](/img/event_loop.png)
+
+        # link do YT video !
+        Philip Roberts: What the heck is the event loop anyway? | JSConf EU 2014
+        https://www.youtube.com/watch?v=8aGhZQkoFbQ
+        </textarea>
+        </section>
+
+        <section data-markdown>
+        <textarea data-template>
+        ## Async techniques
+        * Callbacks
+        * Promises
+        * Async / Await
+        * Generators*
+        </textarea>
+        </section>
+
+        <section data-markdown>
+        <textarea data-template>
+        ## Callback ➡ call you back later
+
+        ![Img](/img/callback.png)
+
+        Note:
+        Callbacks are just the name of a convention for using JavaScript functions. There isn't a special thing called a
+        'callback' in the JavaScript language, it's just a convention. Instead of immediately returning some result like most
+        functions, functions that use callbacks take some time to produce a result. The word 'asynchronous', aka 'async' just means
+        'takes some time' or 'happens in the future, not right now'.
+
+        Note that the handlePhoto is not invoked yet, it is just created and passed as a callback into downloadPhoto.
+        But it won't run until downloadPhoto finishes doing its task, which could take a long time depending on how fast the Internet connection is.
+        </textarea>
+        </section>
+
+        <section data-markdown>
+        <textarea data-template>
+        ## Callback Hell
+
+        ![Img](/img/callback_hell.png)
+
+        Note:
+        Each function gets an argument which is another function that is called with a parameter that is the response of the previous action.
+
+        Callback hell is caused by poor coding practices. Luckily writing better code isn't that hard!
+
+        "Write small modules that each do one thing, and assemble them into other modules that do a bigger thing. You can't get into callback hell if you don't go there."
+        Isaac Schlueter
+        </textarea>
+        </section>
+
+        <section data-markdown>
+        <textarea data-template>
+        ## Promise
+
+        ![Img](/img/promise-catch.png)
+
+        * pending
+        * fulfilled
+        * rejected
+
+        Note:
+
+        Status:
+        : initial state, neither fulfilled nor rejected.
+        : meaning that the operation completed successfully.
+        : meaning that the operation failed.
+
+
+        Many of us have already used promises in the form of libraries such as Q, when.js, RSVP.js, etc.
+        Even jQuery has something called a Deferred object, which is similar to a promise. But now we have native support for promises in JavaScript, which is really exciting.
+
+        A Promise object represents a value that may not be available yet, but will be resolved at some point in the future.
+        It allows you to write asynchronous code in a more synchronous fashion. For example, if you use the promise API to make an asynchronous
+        call to a remote web service, you will create a Promise object which represents the data that will be returned by the web service in future.
+        The caveat is that the actual data isn’t available yet. It will become available when the request completes and a response comes back from the web service.
+        In the meantime, the Promise object acts like a proxy to the actual data.
+        Furthermore, you can attach callbacks to the Promise object, which will be called once the actual data is available.
+
+        In case of an error, reject() is called with an Error object. This indicates that the promise is rejected.
+
+
+        </textarea>
+        </section>
+
+
+        <section data-markdown>
+        <textarea data-template>
+        ## Promise - Sample
+        ![Img](/img/promise.png)
+        </textarea>
+        </section>
+
+        <section data-markdown>
+        <textarea data-template>
+        ## Promise - Handling error
+        ![Img](/img/promise_error.png)
+        </textarea>
+        </section>
+
+
+        <section data-markdown>
+        <textarea data-template>
+        ## Promise - Flow
+        <div class="my-container">
+        ![Img](/img/Chaining-Copy-1.png)
+        </div>
+        </textarea>
+        </section>
+
+        <section data-markdown>
+        <textarea data-template>
+        ## Chaining Promises
+
+        ![Img](/img/promise_return.png)
+
+        Note:
+        The tricky part is that, when you return a simple value inside then(), the next then() is called with that return value.
+        But if you return a promise inside then(), the next then() waits on it and gets called when that promise is settled.
+        </textarea>
+        </section>
+
+
+        <section data-markdown>
+        <textarea data-template>
+        ## Promise utils
+        ![Img](/img/promise_utils.png)
+        </textarea>
+        </section>
+
+        <section data-markdown>
+        <textarea data-template>
+        ## Promise utils
+        <div class="my-container">
+        ![Img](/img/Creating-Promises.png)
+        </div>
+        </textarea>
+        </section>
+
+        <section data-markdown>
+        <textarea data-template>
+        ## Promise.all
+        ![Img](/img/promise_all.png)
+        </textarea>
+        </section>
+
+        <section data-markdown>
+        <textarea data-template>
+        ## Promise.race
+        ![Img](/img/race.png)
+        </textarea>
+        </section>
+
+        <section data-markdown>
+        <textarea data-template>
+        ## Promise - example
+        ![Img](/img/promise_sample.png)
+        </textarea>
+        </section>
+
+        <section data-markdown>
+        <textarea data-template>
+        ## async / await
+
+        ![Img](/img/async_await.png)
+
+        Note:
+        ES7 feature - babel
+
+        The resulting code is much cleaner.
+        Error handling is much simpler and it relies on try/catch just like in any other synchronous code.
+        Debugging is much simpler. Setting a breakpoint inside a .then block will not move to the next .then
+        with debugger you can step through await calls as if they were synchronous calls.
+
+        > an Async Function always returns a Promise
+        </textarea>
+        </section>
+
+
+        <section data-markdown>
+        <textarea data-template>
+        ## async / await - errors
+        ![Img](/img/async_error.png)
+        </textarea>
+        </section>
+
+        <section data-markdown>
+        <textarea data-template>
+        ## async / await - sample
+        ![Img](/img/async_sample.png)
+        </textarea>
+        </section>
+
+                <section data-markdown>
+                    <textarea data-template>
+                        ## async / await bonus 🚀
+                        ![Img](/img/async_all.png)
+                    </textarea>
+                </section>
+
+        <section data-markdown>
+        <textarea data-template>
+        ## Client ↔ Server
+        <div class="my-container2">
+        ![Img](/img/API.png)
+        </div>
+        </textarea>
         </section>
 
         <section data-markdown>
             <textarea data-template>
-                ## Client <-> Server
-                ![Img](/img/API.png)
-            </textarea>
+                ## Before Fetch API
+                ![Img](/img/fetch_1.png)
+                      </textarea>
         </section>
 
         <section data-markdown>
             <textarea data-template>
-                # Fetch
+                ## Before Fetch API
+                ![Img](/img/fetch_2.png)
+      </textarea>
+        </section>
 
-                <!--XMLHttpRequest-->
-                const reqError = (err) => console.log('Fetch Error :-S', err);
-                const reqListener = () => {
-                  var data = JSON.parse(this.responseText);
-                  console.log(data);
-                }
-
-                const oReq = new XMLHttpRequest();
-                oReq.onload = reqListener;
-                oReq.onerror = reqError;
-                oReq.open('get', './api/some.json', true);
-                oReq.send();
-
-                <!--JQuery-->
-                $.ajax('some-url', {
-                  success: (data) => { /* do something with the data */ },
-                  error: (err) => { /* do something when an error happens */}
-                });
-
-                <!--FETCH-->
-                fetch('./api/some.json')
-                .then(response => response.json())
-                .then(data => console.log('data is', data))
-                .catch(error => console.log('error is', error));
+        <section data-markdown>
+            <textarea data-template>
+                ## Fetch API
+                ![Img](/img/fetch_3.png)
 
                 Note:
                 fetch() allows you to make network requests similar to XMLHttpRequest (XHR).
@@ -308,45 +299,25 @@
                 The response of a fetch() request is a Stream object, which means that when we call the json() method,
                 a Promise is returned since the reading of the stream will happen asynchronously.
 
-                POKAZAC przyklad w przegladarce z fetch() bo dzala ;)
-            </textarea>
+                !!POKAZAC przyklad w przegladarce z fetch() bo dzala ;) !!
+      </textarea>
         </section>
-
 
         <section data-markdown>
             <textarea data-template>
-                # Fetch compatibility
-
-                img! fetch_support [dropbox]
-
-                Polyfills:
-                - whatwg-fetch [IE10+]
-                - wisomorphic-fetch
-                - fetch-ie8
-
+                ## Fetch compatibility
+                ![Img](/img/fetch_support.png)
+                 - whatwg-fetch [IE10+]
+                 - wisomorphic-fetch
+                 - fetch-ie8
             </textarea>
         </section>
 
         <section data-markdown>
             <textarea data-template>
-                # Response Metadata
+                ## Fetch - Response
 
-                fetch('users.json', options)'
-
-                //response
-                {
-                  body: ReadableStream
-                  bodyUsed: false
-                  headers: Headers
-                  ok : true
-                  redirected : false
-                  status : 200 // 400 Bad Request, 404 Not Found, 401 Unauthorized,
-                  statusText : "OK"
-                  type : "cors"
-                  url : "http://some-website.com/some-url"
-                  __proto__ : Response
-                }
-
+                ![Img](/img/fetch_response.png)
 
                 Note:
                 >When a request is made for a resource on the same origin, the response will have a basic type and there aren't any restrictions on what you can view from the response.
@@ -356,104 +327,67 @@
                 With an opaque response we won't be able to read the data returned or view the status of the request, meaning we can't check if the request was successful or not.
                 >no-cors is intended to make requests to other origins that do not have CORS headers and result in an opaque response, but as stated, this isn't possible in the window global scope at the moment.
 
-
             </textarea>
+        </section>
+
+        <section>
+            <div class="container">
+                <div class="col_code">
+                    <div data-markdown>
+                        ## Fetch - options
+                        ![Img](/img/fetch_options.png)
+
+                        Note:
+                        At the moment there is no way to cancel a fetch,
+
+                        Here, I choose to use Promise.reject because it's easier to implement.
+                        Errors are cool too, but they're harder to implement, and the only benefit of an Error is a stack trace, which would be non-existent in a Fetch request anyway.
+
+                        The Promise returned from fetch() won’t reject on HTTP error status even if the response is an HTTP 404 or 500. Instead, it will resolve normally (with ok status set to false), and it will only reject on network failure or if anything prevented the request from completing.
+                        By default, fetch won't send or receive any cookies from the server, resulting in unauthenticated requests if the site relies on maintaining a user session (to send cookies, the credentials init option must be set).
+
+                        If you only want to send credentials if the request URL is on the same origin as the calling script, add credentials: 'same-origin'.
+
+                        Files can be uploaded using an HTML <input type="file"/> input element, FormData() and fetch().
+
+                        redirect:
+                        If it is "follow", fetch() API follows the redirect response (HTTP status code = 301,302,303,307,308).
+                        If it is "error", fetch() API treats the redirect response as an error.
+                        If it is "manual", fetch() API doesn't follow the redirect and returns an opaque-redirect filtered response which wraps the redirect response.
+
+                        “default” means use the default behavior of browsers when downloading resources.  The browser first looks inside the HTTP cache to see if there is a matching request.  If there is, and it is fresh, it will be returned from fetch().  If it exists but is stale, a conditional request is made to the remote server and if the server indicates that the response has not changed, it will be read from the HTTP cache.  Otherwise it will be downloaded from the network, and the HTTP cache will be updated with the new response.
+                        “reload” means bypass the HTTP cache on the way to the network, but update it with the newly downloaded response.  This will cause the browser to never look inside the HTTP cache on the way to the network, but update the HTTP cache with the downloaded response. Future requests can use that updated response if appropriate.
+                        “no-cache” means always validate a response that is in the HTTP cache even if the browser thinks that it’s fresh.  This will cause the browser to look for a matching request in the HTTP cache on the way to the network.  If such a request is found, the browser always creates a conditional request to validate it even if it thinks that the response should be fresh.  If a matching cached entry is not found, a normal request will be made.  After a response has been downloaded, the HTTP cache will always be updated with that response.
+                        “force-cache” means that the browser will always use a cached response if a matching entry is found in the cache, ignoring the validity of the response.  Thus even if a really old version of the response is found in the cache, it will always be used without validation.  If a matching entry is not found in the cache, the browser will make a normal request, and will update the HTTP cache with the downloaded response.
+                    </div>
+                </div>
+                <div class="col_text">
+                    <div data-markdown>
+                         - method
+                         - headers
+                         - credetnails
+                         - cache
+                         - mode
+                         - body
+                         - redirect
+                         - referrer
+                    </div>
+                </div>
+            </div>
         </section>
 
 
         <section data-markdown>
             <textarea data-template>
-                # POST
-
-                fetch(url, {
-                    method: 'POST', // *GET, POST, PUT, DELETE, etc.
-                    headers: {
-                      "Content-type": "application/x-www-form-urlencoded; charset=UTF-8"
-                    },
-                    credentials: 'include', // include, same-origin, *omit
-                    cache: 'no-cache', // *default, no-cache, reload, force-cache
-                    mode: 'cors', // no-cors, cors, *same-origin
-                    body: 'foo=bar&lorem=ipsum', // string, FormData
-                    redirect: 'follow', // manual, *follow, error
-                    referrer: 'no-referrer', // *client, no-referrer
-                  })
-                  .then(response => {
-                    if (response.ok) {
-                      return response.json() //arrayBuffer, blob, json, text, formData,
-                    } else {
-                      // Find some way to get to execute .catch()
-                    }
-                  .catch(function (error) {
-                    throw new Error('something went wrong!')
-                    //or
-                    return Promise.reject('something went wrong!')
-                  });
-
-                Note:
-                At the moment there is no way to cancel a fetch,
-
-                Here, I choose to use Promise.reject because it's easier to implement.
-                Errors are cool too, but they're harder to implement, and the only benefit of an Error is a stack trace, which would be non-existent in a Fetch request anyway.
-
-                The Promise returned from fetch() won’t reject on HTTP error status even if the response is an HTTP 404 or 500. Instead, it will resolve normally (with ok status set to false), and it will only reject on network failure or if anything prevented the request from completing.
-                By default, fetch won't send or receive any cookies from the server, resulting in unauthenticated requests if the site relies on maintaining a user session (to send cookies, the credentials init option must be set).
-
-                If you only want to send credentials if the request URL is on the same origin as the calling script, add credentials: 'same-origin'.
-
-                Files can be uploaded using an HTML <input type="file"/> input element, FormData() and fetch().
-
-                redirect:
-                If it is "follow", fetch() API follows the redirect response (HTTP status code = 301,302,303,307,308).
-                If it is "error", fetch() API treats the redirect response as an error.
-                If it is "manual", fetch() API doesn't follow the redirect and returns an opaque-redirect filtered response which wraps the redirect response.
-
-                “default” means use the default behavior of browsers when downloading resources.  The browser first looks inside the HTTP cache to see if there is a matching request.  If there is, and it is fresh, it will be returned from fetch().  If it exists but is stale, a conditional request is made to the remote server and if the server indicates that the response has not changed, it will be read from the HTTP cache.  Otherwise it will be downloaded from the network, and the HTTP cache will be updated with the new response.
-                “reload” means bypass the HTTP cache on the way to the network, but update it with the newly downloaded response.  This will cause the browser to never look inside the HTTP cache on the way to the network, but update the HTTP cache with the downloaded response. Future requests can use that updated response if appropriate.
-                “no-cache” means always validate a response that is in the HTTP cache even if the browser thinks that it’s fresh.  This will cause the browser to look for a matching request in the HTTP cache on the way to the network.  If such a request is found, the browser always creates a conditional request to validate it even if it thinks that the response should be fresh.  If a matching cached entry is not found, a normal request will be made.  After a response has been downloaded, the HTTP cache will always be updated with that response.
-                “force-cache” means that the browser will always use a cached response if a matching entry is found in the cache, ignoring the validity of the response.  Thus even if a really old version of the response is found in the cache, it will always be used without validation.  If a matching entry is not found in the cache, the browser will make a normal request, and will update the HTTP cache with the downloaded response.
+                ## Fetch - async / await
+                ![Img](/img/fetch_async_await.png)
             </textarea>
         </section>
 
         <section data-markdown>
             <textarea data-template>
-                # Fetch - Async / Await
-
-                async function fetchTopFive(sub) {
-                try{
-                  const URL = `https://www.reddit.com/r/${sub}/top/.json?limit=5`;
-                  const fetchResult = fetch(URL)
-                  const response = await fetchResult;
-                  const jsonData = await response.json();
-                  console.log(jsonData);
-                  } catch(e){
-                    throw Error(e);
-                  }
-                }
-
-                fetchTopFive('javascript')
-
-            </textarea>
-        </section>
-
-
-        <section data-markdown>
-            <textarea data-template>
-                # Fetch alternatives: axios [4.82 kB]
-
-                <!--POST-->
-                axios.post('/user', {
-                    firstName: 'Fred',
-                    lastName: 'Flintstone'
-                  })
-                  .then(function (response) {
-                    console.log(response);
-                  })
-                  .catch(function (error) {
-                    console.log(error);
-                  });
-
-                <!--GET-->
-                 const response = await axios.get('/user?ID=12345');
+                ## Fetch - Axios
+                ![Img](/img/axios.png)
 
                 Note:
                 In order to fix all my problem, i find Axios for my rescue. Axios is a Promise based HTTP client for the browser and node.js.
@@ -463,179 +397,12 @@
                 3. Built-in XSRF protection.
                 4. Make XMLHttpRequests from the browser & http requests from node.js.
                 5. Cancel requests and timeout feature.
+                4.8kb
             </textarea>
-        </section>
-
-        <section data-markdown>
-            <textarea data-template>
-                # Live coding
-            </textarea>
-        </section>
-
-        <section data-markdown>
-            <textarea data-template>
-                # Zadanie na zajeciach?
-            </textarea>
-        </section>
-
-
-        <!--OLD WAY-->
-        <!--OLD WAY-->
-        <!--OLD WAY-->
-        <!--OLD WAY-->
-        <!--OLD WAY-->
-
-
-        <!--JACKIE CHAN-->
-        <section data-background-image="/img/lee.png">
-        </section>
-
-        <!--FRAMEWORKS-->
-        <section data-markdown>
-            <script type="text/template">
-                ### When we really need it?
-                To build large apps with data changes over time
-                <br/>
-                <br/>
-
-                ### What we get with framework?
-                * Development Speed <!-- .element: class="fragment" data-fragment-index="1" -->
-                * Best practices <!-- .element: class="fragment" data-fragment-index="2" -->
-                * Support <!-- .element: class="fragment" data-fragment-index="3" -->
-                * Cost <!-- .element: class="fragment" data-fragment-index="4" -->
-
-
-                Note:
-                Frameworks are designed for doing more complex things, so, if you are using framework,
-                there is already solved lot’s of problems for you. Frameworks have predefined design,
-                already setup task runners and many libraries. You already can create fully functional
-                project without other setups. As a result we can setup a new project very easily,
-                development process is much faster, because we are already using high level API’s and
-                every application which developed with that framework use same libraries, so for
-                other developers will be much easier to join. But frameworks have more strict design.
-
-                SPPED -  By using frameworks we deal with pre-build functions so that it helps to speed up the development process.
-                BEST PRACTICES - Frameworks have already predefined, double checked and tested designs based on patterns
-                SUPPORT -  famous framework has huge community associated with it, that works as support team for you.
-                COST - Most of the best frameworks are free to use, so cost can be cut on both developer and client ends.
-            </script>
-        </section>
-
-        <!--REACT-->
-        <section>
-            <div class="container">
-                <div class="col_code">
-                    <div data-markdown>
-                        ![Img](/img/react.png)
-
-                        Note:
-                        - Facebook, Reddit, Airbnb, Netflix, and Google, Twitter, Reddit, Paypal.
-                        Facebook uses Jest to tests its React code.
-                        - funcitonal progrmming
-                        React takes almost a total opposite approach to Angular – it is a very light framework with few
-                        helper modules which allows it to focus on being fast and easy to learn. In fact, the common
-                        quote you’ll hear is that knowing how to develop in React is 80% knowing JavaScript and 20%
-                        knowing React.
-                        One of the biggest differences in React is how it manages to get its speed – Angular and Vue do
-                        varying levels of change detection to automatically keep your code and view in-sync, but React
-                        requires the developer to notify it of changes that are worth rendering. This makes it very fast
-                        but also requires more work and micromanagement on the part of the implementor. As you move into
-                        more advanced React projects you’ll almost certainly end up using management libraries like Flux
-                        & Redux to handle more complex change detection and state management situations since it quickly
-                        becomes difficult to handle manually.
-                        Stylistically, React aims to keep code and view tightly intertwined – the view code is typically
-                        written in a mixed markup known as JSX. I personally don’t like interweaving my code that way
-                        but I see the advantage and could get used to it given time.
-                        An
-                        YOU MIGHT LIKE… | YOU MIGHT HATE…
-                        Almost pure JavaScript | JSX, some awkward syntax
-                        Lightweight | Intermixed View, Style, and Logic code
-                        Brevity | State management
-
-
-                        JSX implies that everything in React is Javascript — it is used for both the JSX templates and
-                        the logic.
-                    </div>
-                </div>
-                <div class="col_text">
-                    <div data-markdown>
-                        ![Img](/img/1280px-React-icon.svg-2.png)
-                        - 2013 Facebook
-                        - ES6 + Babel
-                        - View library / JSX
-                        - Virtual DOM
-                        - one-directional
-                        - create-react-app
-                        - React Native
-                        - 43kb
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section data-markdown class="sumup">
-            <script type="text/template">
-                ####  And the winner is ...
-
-                - 🏎 Speed ➡ ***All*** <!-- .element: class="fragment" data-fragment-index="1" -->
-                - 👴🏻 Mature ➡ ***Angular / React*** <!-- .element: class="fragment" data-fragment-index="2" -->
-                - 📉 Learning curve ➡ ***Vue*** <!-- .element: class="fragment" data-fragment-index="3" -->
-                - 💪🏻 Big company behind ➡ ***Angular / React*** <!-- .element: class="fragment" data-fragment-index="4" -->
-                - ⭐️ Popularity ➡ ***React*** <!-- .element: class="fragment" data-fragment-index="5" -->
-                - 🏠 Startup ➡ ***Vue*** <!-- .element: class="fragment" data-fragment-index="6" -->
-                - 🏢 Enterprise ➡ ***Angular / React*** <!-- .element: class="fragment" data-fragment-index="7" -->
-                - 📱 Mobile ➡ ***React*** <!-- .element: class="fragment" data-fragment-index="8" -->
-
-
-                Note:
-                many developers prefer Vue for creating small apps.
-                React is definitely better for larger apps developing.
-                Angular if you don't want to maintain variety of dependencies
-
-                React, Angular and Vue are all pretty cool, and none of them stands clearly above the others.
-                Your personal preferences and experience of your team are really the deciding factors.
-
-                Vue uses templates, which makes the development process simpler and faster.
-                But when an app is big, these benefits tend to turn into drawbacks.
-                React’s code with JS templates is reusable, and when you create React app, you can easily restructure it in future.
-
-                Big company based — Angular/React
-                Speed — All. React was built by facebook to handle their huge DOM updates. Angular and Vue are really fast either. so as long as you don’t build a rocket machine with your DOM, all of them are great choice. Facebook is one of the biggest SPA out there.
-                Mobile — React. Definitely. after the era of hybrid apps, the world turning right now to a native apps. native apps always been here but you always needed an android developer + ios developer. now with react native you can learn react, then understand the differences between browser elements and mobile elements and you can start build your own native app.
-                Angular has NativeScript but it’s not mature/popular as react native.
-
-                And the winner is — REACT!
-                Why? i think after everything i said, the most important thing is what will last in the next 5 years.
-                So if the past says a big company framework based will live longer, than React/Angular should be the kings here and Vue might be some another framework out there like ember/backbone/knockout was.
-                If you have in-house HTML developers who do not want to learn more Javascript, you are better off choosing Angular or Vue. React entails more Javascript (we talk about this later).
-            </script>
-        </section>
-
-        <section data-markdown class="sumup">
-            <script type="text/template">
-                ![Img](/img/1280px-React-icon.svg.png)
-            </script>
-        </section>
-
-        <section>
-            <section data-markdown class="dom">
-                <script type="text/template">
-                    ### Document Object Model (DOM)
-                    * The HTML DOM is always tree-structured
-                    * ```getElementById```, ```parentNode``` and ```removeChild``` are methods from HTML DOM API.
-                    * Changes to the DOM cause re-rendering of the page.
-                    * Operations on DOM are slow
-
-                    ![Img](/img/dom2.png)
-
-                    Note:
-                    it's essentially an API for html and xml documents
-                </script>
-            </section>
         </section>
 
         <!-- LIVECODING -->
-        <section data-background-image="/img/cat.gif"></section>
+        <!--<section data-background-image="/img/cat.gif"></section>-->
 
         <!--END-->
         <section data-background-image="/img/thats-all-folks-gif-12.gif"></section>
