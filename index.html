@@ -256,18 +256,25 @@
         </textarea>
         </section>
 
-                <section data-markdown>
-                    <textarea data-template>
-                        ## async / await bonus 🚀
-                        ![Img](/img/async_all.png)
-                    </textarea>
-                </section>
+        <section data-markdown>
+            <textarea data-template>
+                ## async / await bonus 🚀
+                ![Img](/img/async_all.png)
+            </textarea>
+        </section>
 
         <section data-markdown>
         <textarea data-template>
         ## Client ↔ Server
         <div class="my-container2">
         ![Img](/img/API.png)
+            Note:
+                1. odpalic w przegladarce:
+                https://api.github.com/users/mkaczkowski
+
+                2. Konsola + Network
+                https://github.com/mkaczkowski/daftcode-react-starter
+                opowiedziec o Cookies?
         </div>
         </textarea>
         </section>
@@ -276,7 +283,7 @@
             <textarea data-template>
                 ## Before Fetch API
                 ![Img](/img/fetch_1.png)
-                      </textarea>
+          </textarea>
         </section>
 
         <section data-markdown>
@@ -300,6 +307,9 @@
                 a Promise is returned since the reading of the stream will happen asynchronously.
 
                 !!POKAZAC przyklad w przegladarce z fetch() bo dzala ;) !!
+                fetch("https://api.github.com/users/mkaczkowski")
+                fetch("https://api.github.com/users/mkaczkowski").then(response => console.info(response))
+                fetch("https://api.github.com/users/mkaczkowski").then(response => response.json()).then(data => console.info(data))
       </textarea>
         </section>
 
@@ -338,39 +348,67 @@
                         ![Img](/img/fetch_options.png)
 
                         Note:
+
+                        await fetch("https://api.github.com/users/mkaczkowski")
+
                         At the moment there is no way to cancel a fetch,
 
                         Here, I choose to use Promise.reject because it's easier to implement.
-                        Errors are cool too, but they're harder to implement, and the only benefit of an Error is a stack trace, which would be non-existent in a Fetch request anyway.
+                        Errors are cool too, but they're harder to implement, and the only benefit of an Error is a
+                        stack trace, which would be non-existent in a Fetch request anyway.
 
-                        The Promise returned from fetch() won’t reject on HTTP error status even if the response is an HTTP 404 or 500. Instead, it will resolve normally (with ok status set to false), and it will only reject on network failure or if anything prevented the request from completing.
-                        By default, fetch won't send or receive any cookies from the server, resulting in unauthenticated requests if the site relies on maintaining a user session (to send cookies, the credentials init option must be set).
+                        The Promise returned from fetch() won’t reject on HTTP error status even if the response is an
+                        HTTP 404 or 500. Instead, it will resolve normally (with ok status set to false), and it will
+                        only reject on network failure or if anything prevented the request from completing.
+                        By default, fetch won't send or receive any cookies from the server, resulting in
+                        unauthenticated requests if the site relies on maintaining a user session (to send cookies, the
+                        credentials init option must be set).
 
-                        If you only want to send credentials if the request URL is on the same origin as the calling script, add credentials: 'same-origin'.
+                        If you only want to send credentials if the request URL is on the same origin as the calling
+                        script, add credentials: 'same-origin'.
 
                         Files can be uploaded using an HTML <input type="file"/> input element, FormData() and fetch().
 
                         redirect:
-                        If it is "follow", fetch() API follows the redirect response (HTTP status code = 301,302,303,307,308).
+                        If it is "follow", fetch() API follows the redirect response (HTTP status code =
+                        301,302,303,307,308).
                         If it is "error", fetch() API treats the redirect response as an error.
-                        If it is "manual", fetch() API doesn't follow the redirect and returns an opaque-redirect filtered response which wraps the redirect response.
+                        If it is "manual", fetch() API doesn't follow the redirect and returns an opaque-redirect
+                        filtered response which wraps the redirect response.
 
-                        “default” means use the default behavior of browsers when downloading resources.  The browser first looks inside the HTTP cache to see if there is a matching request.  If there is, and it is fresh, it will be returned from fetch().  If it exists but is stale, a conditional request is made to the remote server and if the server indicates that the response has not changed, it will be read from the HTTP cache.  Otherwise it will be downloaded from the network, and the HTTP cache will be updated with the new response.
-                        “reload” means bypass the HTTP cache on the way to the network, but update it with the newly downloaded response.  This will cause the browser to never look inside the HTTP cache on the way to the network, but update the HTTP cache with the downloaded response. Future requests can use that updated response if appropriate.
-                        “no-cache” means always validate a response that is in the HTTP cache even if the browser thinks that it’s fresh.  This will cause the browser to look for a matching request in the HTTP cache on the way to the network.  If such a request is found, the browser always creates a conditional request to validate it even if it thinks that the response should be fresh.  If a matching cached entry is not found, a normal request will be made.  After a response has been downloaded, the HTTP cache will always be updated with that response.
-                        “force-cache” means that the browser will always use a cached response if a matching entry is found in the cache, ignoring the validity of the response.  Thus even if a really old version of the response is found in the cache, it will always be used without validation.  If a matching entry is not found in the cache, the browser will make a normal request, and will update the HTTP cache with the downloaded response.
+                        “default” means use the default behavior of browsers when downloading resources. The browser
+                        first looks inside the HTTP cache to see if there is a matching request. If there is, and it is
+                        fresh, it will be returned from fetch(). If it exists but is stale, a conditional request is
+                        made to the remote server and if the server indicates that the response has not changed, it will
+                        be read from the HTTP cache. Otherwise it will be downloaded from the network, and the HTTP
+                        cache will be updated with the new response.
+                        “reload” means bypass the HTTP cache on the way to the network, but update it with the newly
+                        downloaded response. This will cause the browser to never look inside the HTTP cache on the way
+                        to the network, but update the HTTP cache with the downloaded response. Future requests can use
+                        that updated response if appropriate.
+                        “no-cache” means always validate a response that is in the HTTP cache even if the browser thinks
+                        that it’s fresh. This will cause the browser to look for a matching request in the HTTP cache on
+                        the way to the network. If such a request is found, the browser always creates a conditional
+                        request to validate it even if it thinks that the response should be fresh. If a matching cached
+                        entry is not found, a normal request will be made. After a response has been downloaded, the
+                        HTTP cache will always be updated with that response.
+                        “force-cache” means that the browser will always use a cached response if a matching entry is
+                        found in the cache, ignoring the validity of the response. Thus even if a really old version of
+                        the response is found in the cache, it will always be used without validation. If a matching
+                        entry is not found in the cache, the browser will make a normal request, and will update the
+                        HTTP cache with the downloaded response.
                     </div>
                 </div>
                 <div class="col_text">
                     <div data-markdown>
-                         - method
-                         - headers
-                         - credetnails
-                         - cache
-                         - mode
-                         - body
-                         - redirect
-                         - referrer
+                        - method
+                        - headers
+                        - credetnails
+                        - cache
+                        - mode
+                        - body
+                        - redirect
+                        - referrer
                     </div>
                 </div>
             </div>
@@ -381,6 +419,10 @@
             <textarea data-template>
                 ## Fetch - async / await
                 ![Img](/img/fetch_async_await.png)
+
+                Note:
+                let response = await fetch("https://api.github.com/users/mkaczkowski")
+                await response.json()
             </textarea>
         </section>
 
