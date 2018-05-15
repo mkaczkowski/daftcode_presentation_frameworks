@@ -65,7 +65,6 @@
 
         ![Img](/img/event_loop.png)  <!-- .element height="55%" width="55%" -->
 
-
         Note:
         link do YT video !
         Philip Roberts: What the heck is the event loop anyway? | JSConf EU 2014
@@ -74,13 +73,13 @@
         </section>
 
         <section data-markdown>
-        <textarea data-template>
-        ## Async techniques
-        * Callbacks
-        * Promises
-        * Async / Await
-        * Generators*
-        </textarea>
+            <textarea data-template>
+            ## Async techniques
+            * Callbacks
+            * Promises
+            * Async / Await
+            * Generators*
+            </textarea>
         </section>
 
         <section data-markdown>
@@ -110,8 +109,13 @@
         Each function gets an argument which is another function that is called with a parameter that is the response of the previous action.
 
         Callback hell is caused by poor coding practices. Luckily writing better code isn't that hard!
+        </textarea>
+        </section>
 
-        "Write small modules that each do one thing, and assemble them into other modules that do a bigger thing. You can't get into callback hell if you don't go there."
+        <section data-markdown>
+        <textarea data-template>
+        ## Callback Hell
+        <p style="font-style: italic">"Write small modules that each do one thing, and assemble them into other modules that do a bigger thing. You can't get into callback hell if you don't go there."</p>
         Isaac Schlueter
         </textarea>
         </section>
@@ -134,7 +138,7 @@
         : meaning that the operation failed.
 
 
-        Many of us have already used promises in the form of libraries such as Q, when.js, RSVP.js, etc.
+        Many of us have already used promises in the form of libraries such as Q, when.js, RSVP.js, $.deffer, bluebird
         Even jQuery has something called a Deferred object, which is similar to a promise. But now we have native support for promises in JavaScript, which is really exciting.
 
         A Promise object represents a value that may not be available yet, but will be resolved at some point in the future.
@@ -155,6 +159,15 @@
         <textarea data-template>
         ## Promise - Sample
         ![Img](/img/promise.png)
+        </textarea>
+        </section>
+
+        <section data-markdown>
+        <textarea data-template>
+        ## Promise
+        <div class="my-container">
+        ![Img](/img/Creating-Promises.png)
+        </div>
         </textarea>
         </section>
 
@@ -192,15 +205,6 @@
         <textarea data-template>
         ## Promise utils
         ![Img](/img/promise_utils.png)
-        </textarea>
-        </section>
-
-        <section data-markdown>
-        <textarea data-template>
-        ## Promise utils
-        <div class="my-container">
-        ![Img](/img/Creating-Promises.png)
-        </div>
         </textarea>
         </section>
 
@@ -314,17 +318,7 @@
       </textarea>
         </section>
 
-        <section data-markdown>
-            <textarea data-template>
-                ## Fetch compatibility
-                ![Img](/img/fetch_support.png)  <!-- .element height="60%" width="60%" -->
 
-                #### Polyfills:
-                   - whatwg-fetch [IE10+]
-                   - wisomorphic-fetch
-                   - fetch-ie8
-            </textarea>
-        </section>
 
         <section data-markdown>
             <textarea data-template>
@@ -342,6 +336,7 @@
 
             </textarea>
         </section>
+
 
         <section>
             <div class="container">
@@ -415,6 +410,19 @@
                     </div>
                 </div>
             </div>
+        </section>
+
+
+        <section data-markdown>
+            <textarea data-template>
+                ## Fetch compatibility
+                ![Img](/img/fetch_support.png)  <!-- .element height="60%" width="60%" -->
+
+                #### Polyfills:
+                   - whatwg-fetch [IE10+]
+                   - wisomorphic-fetch
+                   - fetch-ie8
+            </textarea>
         </section>
 
         <section data-markdown>
