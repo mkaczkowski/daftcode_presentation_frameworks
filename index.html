@@ -29,10 +29,10 @@
         <!--INTRO-->
         <section data-markdown class="intro">
         <textarea data-template>
-        ![Img](/img/baner.png)
-         - Asynchronous JS <!-- .element: class="h4" -->
-         - & Fetch API <!-- .element: class="h5" -->
-         - Mariusz Kaczkowski <!-- .element: class="author" -->
+        ![Img](/img/baner.png) <!-- .element height="90%" width="90%" -->
+           - Asynchronous JS <!-- .element: class="h4" -->
+           - & Fetch API <!-- .element: class="h5" -->
+           - Mariusz Kaczkowski <!-- .element: class="author" -->
         </textarea>
         </section>
 
@@ -61,11 +61,13 @@
 
         <section data-markdown>
         <textarea data-template>
-        ## JS Engine
+        ### JS Engine
 
-        ![Img](/img/event_loop.png)
+        ![Img](/img/event_loop.png)  <!-- .element height="55%" width="55%" -->
 
-        # link do YT video !
+
+        Note:
+        link do YT video !
         Philip Roberts: What the heck is the event loop anyway? | JSConf EU 2014
         https://www.youtube.com/watch?v=8aGhZQkoFbQ
         </textarea>
@@ -102,7 +104,7 @@
         <textarea data-template>
         ## Callback Hell
 
-        ![Img](/img/callback_hell.png)
+        ![Img](/img/callback_hell.png)  <!-- .element height="75%" width="75%" -->
 
         Note:
         Each function gets an argument which is another function that is called with a parameter that is the response of the previous action.
@@ -118,7 +120,7 @@
         <textarea data-template>
         ## Promise
 
-        ![Img](/img/promise-catch.png)
+        ![Img](/img/promise-catch.png) <!-- .element height="60%" width="60%" -->
 
         * pending
         * fulfilled
@@ -159,7 +161,7 @@
         <section data-markdown>
         <textarea data-template>
         ## Promise - Handling error
-        ![Img](/img/promise_error.png)
+        ![Img](/img/promise_error.png)  <!-- .element height="75%" width="75%" -->
         </textarea>
         </section>
 
@@ -266,7 +268,7 @@
         <textarea data-template>
         ## Client ↔ Server
         <div class="my-container2">
-        ![Img](/img/API.png)
+        ![Img](/img/API.png)  <!-- .element height="70%" width="70%" -->
             Note:
                 1. odpalic w przegladarce:
                 https://api.github.com/users/mkaczkowski
@@ -315,10 +317,12 @@
         <section data-markdown>
             <textarea data-template>
                 ## Fetch compatibility
-                ![Img](/img/fetch_support.png)
-                 - whatwg-fetch [IE10+]
-                 - wisomorphic-fetch
-                 - fetch-ie8
+                ![Img](/img/fetch_support.png)  <!-- .element height="60%" width="60%" -->
+
+                #### Polyfills:
+                   - whatwg-fetch [IE10+]
+                   - wisomorphic-fetch
+                   - fetch-ie8
             </textarea>
         </section>
 
@@ -413,6 +417,49 @@
             </div>
         </section>
 
+        <section data-markdown>
+            <textarea data-template style="text-align: left">
+                ## Cookies 🍪 (IE 2 - 1995)
+
+                <div style="display: inline-block; text-align: left">
+                <div class="inline-section">
+                #### Set-Cookie header (server):
+                * Set-Cookie: yummy_cookie=choco
+                * Domain=mydomain.com; Secure; HttpOnly; Expires=Wed, 21 Oct 2015 07:28:00 GMT
+                </div>
+                <div class="inline-section">
+                #### Cookie HTTP header (client):
+                * Cookie:yummy_cookie=choco
+                </div>
+    <div class="inline-section">
+                #### JS
+                * document.cookie = "tasty_cookie=strawberry";
+                * console.log(document.cookie);
+</div>
+                    </div>
+                Note:
+                An HTTP cookie (web cookie, browser cookie) is a small piece of data that a server sends to the user's web browser.
+                he browser may store it and send it back with the next request to the same server
+                Typically, it's used to tell if two requests came from the same browser
+                Cookies are sent with every request, so they can worsen performance (especially for mobile data connections).
+
+                When receiving an HTTP request, a server can send a Set-Cookie header with the response. The cookie is usually stored by the browser, and then the cookie is sent with requests made to the same server inside a Cookie HTTP header. An expiration date or duration can be specified, after which the cookie is no longer sent. Additionally, restrictions to a specific domain and path can be set, limiting where the cookie is sent.
+
+                is a small piece of data sent from a website and stored on the user's computer by the user's web browser while the user is browsing.
+                 Perhaps most importantly, authentication cookies are the most common method used by web servers to know whether the user is logged in or not, and which account they are logged in with
+
+                 it is deleted when the client shuts down, because it didn't specify an Expires or Max-Age
+                For example, if Domain=mozilla.org is set, then cookies are included on subdomains like developer.mozilla.org.
+
+                Session management
+                Logins, shopping carts, game scores, or anything else the server should remember
+                Personalization
+                User preferences, themes, and other settings
+                Tracking
+                Recording and analyzing user behavior
+            </textarea>
+        </section>
+
 
         <section data-markdown>
             <textarea data-template>
@@ -428,7 +475,7 @@
         <section data-markdown>
             <textarea data-template>
                 ## Fetch - Axios
-                ![Img](/img/axios.png)
+                ![Img](/img/axios.png) <!-- .element height="80%" width="80%" -->
 
                 Note:
                 In order to fix all my problem, i find Axios for my rescue. Axios is a Promise based HTTP client for the browser and node.js.

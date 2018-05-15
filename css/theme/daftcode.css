@@ -368,3 +368,8 @@ section img{
     box-shadow: #333333 0px 0px 5px 5px;
     padding:20px !important;
 }
+
+.inline-section{
+    display: inline-block;
+    text-align: left;
+}
